@@ -17,4 +17,10 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::group(['middleware'=>'auth'], function () {
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/user/edit/{id}', 'UserController@edit');
+Route::post('/user/update/{id}', 'UserController@update');
+Route::get('/users', 'UserController@showFollowing');
+Route::get('/users', 'UserController@showFollowers');
+});

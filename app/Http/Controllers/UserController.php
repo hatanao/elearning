@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
+use Hash;
+use App\User;
 
 class UserController extends Controller
 {
@@ -42,5 +44,22 @@ class UserController extends Controller
     public function showFollowers(){
         $users = Auth::user()->followers()->get();
         return view('users.usersList', compact('users'));
+    }
+
+    public function showUserProfile($id)
+    {
+        $user = User::find($id); 
+        return view('users.userProfile', compact('user'));
+    }
+
+    public function follow($id){
+        Auth::user()->following()->attach($id);
+        
+        return redirect()->back();
+    }
+    public function unfollow($id){
+        Auth::user()->following()->detach($id);
+        
+        return redirect()->back();
     }
 }

@@ -12,7 +12,7 @@
                 <div class="panel-body">
                     <div class="text-center">
                         <div class="avatar">
-                            <img src="/img/{{ Auth::user()->avatar }}" class="rounded-circle">
+                            <img src="/images/{{ Auth::user()->avatar }}" class="rounded-circle" style="width: 75px;">
                         </div>
 
                         <div class="py-2">
@@ -24,27 +24,14 @@
 
                         <div class="row mt-15">
                             <div class="col-sm-6">
-                                <strong><a href="/user/followinglist"></a></strong>
                                 <div>following</div>
+                                <strong><a href="/user/followinglist">{{Auth::user()->following()->count()}}</a></strong>
                             </div>
                             <div class="col-sm-6">
-                                <strong><a href="/user/followerslist"></a></strong>
                                 <div>followers</div>
+                                <strong><a href="/user/followerslist">{{Auth::user()->followers()->count()}}</a></strong>
                             </div>        
                         </div>
-
-                        <div class="dropdown-divider my-3"></div>
-
-                        <div class="media bg-light ">
-                            <div class="media-body">
-                                <div class="btn-group btn-group-justified d-flex justify-content-center py-2">
-                                    <div class="well text-center">
-                                        <h4></h4>
-                                        <small>blogs posted</small>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>        
                     </div>
                 </div>
             </div>

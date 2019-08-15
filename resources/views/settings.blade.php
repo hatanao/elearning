@@ -11,7 +11,7 @@
             <form method="post" action="/user/update/{{Auth::user()->id}}">
             @csrf
             <div class="avatar text-center">
-                <img src="/img/{{ Auth::user()->avatar }}" class="rounded-circle">
+                <img src="/images/{{ Auth::user()->avatar }}" class="rounded-circle" style="width: 75px;">
                 <div class="py-2">
                     <a href="user/edit/{{Auth::user()->id}}" class="btn btn-primary">Change Image</a>
                 </div>

@@ -9,29 +9,31 @@
                     <div class="pull-right"> </div>
                 </div>
 
-                <div class="panel-body">
-                    <div class="list-group p-4">
+                    <table class="table table-borderless">
                        @foreach($users as $user)
                        @if($user->id != Auth::user()->id)
-                        <div class="list-group-item mb-1"> 
-                            <form class=" d-flex align-items-center" method="post" action="#">
-                                <img src="/img/{{$user->avatar}}" style="width:50px;height:50px;">
-                                <a class="pl-3" href="/user/profile/{{$user->id}}">{{$user->name}}</a>
-                                
+                           <tr>
+                               <td class="align-middle">
+                                    <img src="/images/{{$user->avatar}}" style="width:50px;height:50px;">
+                                    <a class="pl-3" href="/user/profile/{{$user->id}}">{{$user->name}}</a>
+                                </td>
                                 @if(Auth::user()->is_following($user->id))
-                                <div class="ml-auto">
-                                    <a href="/user/unfollow/{{$user->id}}" class="btn btn-danger"> Unfollow </a>
-                                </div>
+                                <td class="align-middle">
+                                    <div class="ml-auto">
+                                        <a href="/user/unfollow/{{$user->id}}" class="btn btn-danger"> Unfollow </a>
+                                    </div>
+                                </td>
                                 @else
-                                <div class="ml-auto">
-                                    <a href="/user/follow/{{$user->id}}" class="btn btn-primary"> Follow</a>
-                                </div>
+                                <td class="align-middle">
+                                    <div class="ml-auto">
+                                        <a href="/user/follow/{{$user->id}}" class="btn btn-primary"> Follow</a>
+                                    </div>
+                                </td>
                                 @endif
-                            </form>
-                        </div>
+                            </tr>
                         @endif
                         @endforeach
-                    </div>
+                    </table>
                 </div>
             </div>
         </div>

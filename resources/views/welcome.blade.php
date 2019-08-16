@@ -4,16 +4,19 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>E-learning</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 
+        <link href="{{ asset('css/landingPage.css') }}" rel="stylesheet">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <!-- Styles -->
+
         <style>
             html, body {
                 background-color: #fff;
-                color: #636b6f;
+                color: white;
                 font-family: 'Nunito', sans-serif;
                 font-weight: 200;
                 height: 100vh;
@@ -49,7 +52,7 @@
             }
 
             .links > a {
-                color: #636b6f;
+                color:white;
                 padding: 0 25px;
                 font-size: 13px;
                 font-weight: 600;
@@ -64,9 +67,9 @@
         </style>
     </head>
     <body>
-        <div class="flex-center position-ref full-height">
+        <div class="bg-brand flex-center position-ref full-height">
             @if (Route::has('login'))
-                <div class="top-right links">
+                <div class="top-right links in-front">
                     @auth
                         <a href="{{ url('/home') }}">Home</a>
                     @else
@@ -79,21 +82,11 @@
                 </div>
             @endif
 
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
+        
+        <div class="row text-center">
+            <div class="col-sm-12 lp-title">
+                <h1>Discover new knowledge</h1>
             </div>
-        </div>
+        </div>    
     </body>
 </html>

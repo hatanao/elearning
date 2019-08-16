@@ -21,6 +21,11 @@ Route::group(['middleware'=>'auth'], function () {
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/user/edit/{id}', 'UserController@edit');
 Route::post('/user/update/{id}', 'UserController@update');
-Route::get('/users', 'UserController@showFollowing');
-Route::get('/users', 'UserController@showFollowers');
+Route::get('/users', 'HomeController@showUsers');
+Route::get('/users/followingList', 'UserController@showFollowing');
+Route::get('/users/followerList', 'UserController@showFollowers');
+Route::get('/user/profile/{id}', 'UserController@showUserProfile');
+Route::get('/user/follow/{id}', 'UserController@follow');
+Route::get('/user/unfollow/{id}', 'UserController@unfollow');
+Route::get('/lessons/{id}', 'HomeController@showLessons');
 });

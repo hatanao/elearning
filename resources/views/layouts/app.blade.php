@@ -19,7 +19,7 @@
     <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
+    <link href="{{ asset('css/main.css') }}" rel="stylesheet">
     @yield('css')
 
 </head>
@@ -39,12 +39,12 @@
                 @if (Auth::check())
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                        <a class="nav-link" href="/"><i class="fas fa-folder-plus">Create</i></a>
+                        <a class="nav-link" href="/user/addLessons/{{Auth::user()->id}}"><i class="fas fa-folder-plus">Create</i></a>
                         </li>
                     </ul>
                 @endif
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
+                    <ul class="navbar-nav ml-auto nav-right">
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
@@ -57,15 +57,15 @@
                             @endif
                         @else
                         <li class="nav-item">
-                            <a class="nav-link" href="/lessons/{{Auth::user()->id}}"><i class="fas fa-book">Lessons</i></a>
+                            <a class="nav-link" href="/user/lessons/{{Auth::user()->id}}"><i class="fas fa-book">Lessons</i></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/users"><i class="fas fa-user-friends">Users</i></a>
+                            <a class="nav-link" href="/user"><i class="fas fa-user-friends">Users</i></a>
                         </li>
                             <li class="nav-item dropdown">
                             
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                <img src="{{ Auth::user()->avatar }}" class="rounded-circle" style="width: 25px;">
+                                <img src="{{ Auth::user()->avatar }}" class="rounded-circle" style="width: 2vw;height: 2vw;">
                                 {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 

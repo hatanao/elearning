@@ -5,7 +5,17 @@
 @endsection
 
 @section('content')
+
+
 <div class="container">
+    <ul class="nav nav-tabs mb-5">
+        <li class="nav-item">
+            <a class="nav-link" href="#">All Lessons</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">My Lessons</a>
+        </li>
+    </ul>
     <div class="row">
         <div class="col-sm-12 col-md-6 col-lg-4">
             <div class="card" style="width: 18rem;">

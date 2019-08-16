@@ -50,4 +50,8 @@ class User extends Authenticatable
     public function followers(){
         return $this->belongsToMany('App\User', 'followers', 'user_id', 'follower_id'); // someone who is followed by someone must come first
     }
+
+    public function lessons(){
+        return $this->hasMany('App\Lesson');
+    }
 }

@@ -14,7 +14,7 @@
                        @if($user->id != Auth::user()->id)
                            <tr>
                                <td class="align-middle">
-                                    <img src="{{$user->avatar}}" style="width:50px;height:50px;">
+                                    <img src="{{$user->avatar}}" class="rounded-circle" style="width: 5vw;height: 5vw;">
                                     <a class="pl-3" href="/user/profile/{{$user->id}}">{{$user->name}}</a>
                                 </td>
                                 @if(Auth::user()->is_following($user->id))

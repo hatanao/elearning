@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-<div class="container">
+<div class="container in-front">
     <div class="row">
         <div class="col-4 m-auto">
             <form method="post" action="/user/update/{{Auth::user()->id}}" enctype="multipart/form-data">
@@ -19,21 +19,10 @@
                     @endforeach
                     </ul>
                 </div>
-                @endif
-                @if (session('success'))
-                <div class="alert alert-success">
-                    {{ session('success') }}
-                </div>
-                @endif
-                @if ($is_image)
-                <figure>
-                    <img src="/storage/profile_images/{{ Auth::id() }}.jpg" class="rounded-circle" style="width: 75px;">
-                    <figcaption>現在のプロフィール画像</figcaption>
-                </figure>
-                @endif
-                <img src="{{ Auth::user()->avatar }}" class="rounded-circle" style="width: 75px;">
+            @endif
+                <img src="{{ Auth::user()->avatar }}" class="rounded-circle" style="width: 10vw; height: 10vw;">
                 <div class="py-2">
-                    <input type="file" name="image">
+                    <input type="file" name="image" class="col-lg-8">
                 </div>
             </div>
             <div class="form-group" >

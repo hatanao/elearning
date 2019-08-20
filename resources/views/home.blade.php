@@ -6,6 +6,15 @@
 
 @section('content')
 <div class="container">
+
+
+    @if (isset($success))
+        <div class="alert alert-success">
+            <ul>
+                <li>{{$success}}</li>
+            </ul>
+        </div>
+    @endif
     <div class="row">
         <div class="col-sm-4">
             <div class="panel user-profile bg-white p-3">
@@ -25,11 +34,11 @@
                         <div class="row mt-15">
                             <div class="col-sm-6">
                                 <div>following</div>
-                                <strong><a href="/users/followingList">{{Auth::user()->following()->count()}}</a></strong>
+                                <strong><a href="/user/followingList">{{Auth::user()->following()->count()}}</a></strong>
                             </div>
                             <div class="col-sm-6">
                                 <div>followers</div>
-                                <strong><a href="/users/followerList">{{Auth::user()->followers()->count()}}</a></strong>
+                                <strong><a href="/user/followerList">{{Auth::user()->followers()->count()}}</a></strong>
                             </div>        
                         </div>
                     </div>

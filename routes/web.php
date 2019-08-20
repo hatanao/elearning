@@ -29,9 +29,20 @@ Route::group(['middleware'=>'auth'], function () {
         Route::get('profile/{id}', 'UserController@showUserProfile');
         Route::get('follow/{id}', 'UserController@follow');
         Route::get('unfollow/{id}', 'UserController@unfollow');
-        Route::get('lessons/{id}', 'HomeController@showLessons');
-        Route::get('addLessons/{id}', 'LessonController@addLessons');
-        Route::post('storeLessons/{id}', 'LessonController@storeLessons');
-        Route::get('showLessons', 'LessonController@showLessons');
+        Route::get('lessons', 'HomeController@showAllLessons');
+        Route::get('addLesson/{id}', 'LessonController@addLesson');
+        Route::post('storeLesson/{id}', 'LessonController@storeLesson');
+        Route::get('editLesson/{id}', 'LessonController@editLesson');    
+        Route::post('updateLesson/{lessonId}', 'LessonController@updateLesson');    
+        Route::get('delete/{lessonId}', 'LessonController@deleteLesson');    
+        Route::get('viewQuizzes/{id}', 'QuizController@viewQuizzes');    
+        Route::get('addQuiz/{id}', 'QuizController@addQuiz');    
+        Route::get('myLessons/{id}', 'LessonController@showMyLessons');    
     });
+    
 });
+    Route::group(['prefix'=>'admin'], function () {
+        Route::get('login', 'AdminController@adminLogin');
+        Route::get('register', 'AdminController@adminShowRegister');
+        Route::post('register', 'AdminController@adminRegister')->name('admin.register');
+    });

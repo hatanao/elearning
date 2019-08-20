@@ -13,7 +13,7 @@
                     <div class="text-center">
                         <div class="avatar">
                             <div class="default">
-                                <img src="{{ Auth::user()->avatar }}" class="rounded-circle" style="width: 75px;">
+                                <img src="{{ Auth::user()->avatar }}" class="rounded-circle" style="width: 10vw; height: 10vw;">
                             </div>
                         </div>
 

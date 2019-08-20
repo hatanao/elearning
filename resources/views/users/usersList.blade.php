@@ -12,19 +12,19 @@
                     <table class="table table-borderless">
                        @foreach($users as $user)
                        @if($user->id != Auth::user()->id)
-                           <tr>
+                           <tr class="border-bottom">
                                <td class="align-middle">
                                     <img src="{{$user->avatar}}" class="rounded-circle" style="width: 5vw;height: 5vw;">
                                     <a class="pl-3" href="/user/profile/{{$user->id}}">{{$user->name}}</a>
                                 </td>
                                 @if(Auth::user()->is_following($user->id))
-                                <td class="align-middle">
+                                <td class="align-middle text-right">
                                     <div class="ml-auto">
                                         <a href="/user/unfollow/{{$user->id}}" class="btn btn-danger"> Unfollow </a>
                                     </div>
                                 </td>
                                 @else
-                                <td class="align-middle">
+                                <td class="align-middle text-right">
                                     <div class="ml-auto">
                                         <a href="/user/follow/{{$user->id}}" class="btn btn-primary"> Follow</a>
                                     </div>
@@ -34,7 +34,9 @@
                         @endif
                         @endforeach
                     </table>
-                </div>
+                    <div class="d-flex justify-content-center">
+                        {{ $users->links() }}
+                    </div>
             </div>
         </div>
     </div>

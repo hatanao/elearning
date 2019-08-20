@@ -9,6 +9,10 @@ class Lesson extends Model
     protected $guarded = [];
     
     public function user(){
-        return $this->belognsTo('App\Lesson');
+        return $this->belongsTo('App\User');
+    }
+
+    public function quizzes(){
+        return $this->hasMany('App\Quiz');
     }
 }

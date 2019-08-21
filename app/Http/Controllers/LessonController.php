@@ -35,7 +35,7 @@ class LessonController extends Controller
 
     }
     
-    public function showMyLessons($id){
+    public function showMyLessons(){
         $lessons = Auth::user()->lessons;
         return view('lessons.showMyLessons', compact('lessons'));
     }

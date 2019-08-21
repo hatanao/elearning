@@ -34,7 +34,7 @@
                 </div>
                 <div class="form-group text-right">
                         <button type="submit" class="btn btn-primary">{{isset($lesson) ? 'Update' : 'Create'}}</button>
-                        <a href="/home" class="btn btn-secondary">Back</a>
+                        <a href="/user/myLessons" class="btn btn-secondary">Back</a>
                 </div>
             </form>
         </div>

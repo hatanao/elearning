@@ -11,4 +11,8 @@ class Quiz extends Model
     public function lesson(){
         return $this->belongsTo('App\Lesson');
     }
+
+    public function choices(){
+        return $this->hasMany('App\Choice');
+    }
 }

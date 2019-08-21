@@ -24,7 +24,7 @@
         @foreach($lessons as $lesson)
         <div class="col-sm-12 col-md-6 col-lg-4  mb-4">
             <div class="card" style="width: 18rem;">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/7/76/Steve_Jobs_with_MacBook_Air_2.jpg" class="card-img-top" alt="steve jobs">
+                <img src="{{$lesson->user->avatar}}" class="card-img-top" alt="steve jobs">
                 <div class="card-body">
                     <h5 class="card-title"><a href="/user/viewQuizzes/{{$lesson->id}}">{{$lesson->title}}</a></h5>
                     <p class="card-text">{{$lesson->description}}</p>

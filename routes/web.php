@@ -35,9 +35,9 @@ Route::group(['middleware'=>'auth'], function () {
         Route::get('editLesson/{id}', 'LessonController@editLesson');    
         Route::post('updateLesson/{lessonId}', 'LessonController@updateLesson');    
         Route::get('delete/{lessonId}', 'LessonController@deleteLesson');    
+        Route::get('myLessons', 'LessonController@showMyLessons');    
         Route::get('viewQuizzes/{id}', 'QuizController@viewQuizzes');    
         Route::get('addQuiz/{id}', 'QuizController@addQuiz');    
-        Route::get('myLessons/{id}', 'LessonController@showMyLessons');    
     });
     
 });

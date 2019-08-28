@@ -26,6 +26,7 @@
                     <h5 class="card-title">{{$lesson->title}}</h5>
                     <p class="card-text">{{$lesson->description}}</p>
                     <a href="#" class="btn btn-primary">Start</a>
+                    
                 </div>
             </div>
         </div>

@@ -30,14 +30,19 @@ Route::group(['middleware'=>'auth'], function () {
         Route::get('follow/{id}', 'UserController@follow');
         Route::get('unfollow/{id}', 'UserController@unfollow');
         Route::get('lessons', 'HomeController@showAllLessons');
-        Route::get('addLesson/{id}', 'LessonController@addLesson');
+        Route::get('addLesson/{userId}', 'LessonController@addLesson');
         Route::post('storeLesson/{id}', 'LessonController@storeLesson');
-        Route::get('editLesson/{id}', 'LessonController@editLesson');    
+        Route::get('editLesson/{lessonId}', 'LessonController@editLesson');    
         Route::post('updateLesson/{lessonId}', 'LessonController@updateLesson');    
         Route::get('delete/{lessonId}', 'LessonController@deleteLesson');    
         Route::get('myLessons', 'LessonController@showMyLessons');    
-        Route::get('viewQuizzes/{id}', 'QuizController@viewQuizzes');    
-        Route::get('addQuiz/{id}', 'QuizController@addQuiz');    
+        Route::get('viewQuizzes/{lessonId}', 'QuizController@viewQuizzes');    
+        Route::get('addQuiz/{lessonId}', 'QuizController@addQuiz');    
+        Route::post('storeQuiz/{lessonId}', 'QuizController@storeQuiz');
+        Route::get('editQuiz/{quizId}', 'QuizController@editQuiz');
+        Route::post('updateQuiz/{quizId}', 'QuizController@updateQuiz');
+        Route::get('deleteQuiz/{quizId}', 'QuizController@deleteQuiz');
+        Route::get('startQuiz/{lessonId}', 'LessonController@startQuiz');
     });
     
 });

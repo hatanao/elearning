@@ -12,7 +12,7 @@
             <a class="nav-link" href="/user/lessons">All Lessons</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/user/myLessons/{{Auth::user()->id}}">My Lessons</a>
+            <a class="nav-link" href="/user/myLessons">My Lessons</a>
         </li>
     </ul>
     <div class="row" style="justify-content: flex-end;">
@@ -29,9 +29,9 @@
                     <h5 class="card-title"><a href="/user/viewQuizzes/{{$lesson->id}}">{{$lesson->title}}</a></h5>
                     <p class="card-text">{{$lesson->description}}</p>
                     <div class="">
-                        <a href="#" class="btn btn-primary">Start</a>
+                        <a href="/user/startQuiz/{{$lesson->id}}" class="btn btn-primary">Start</a>
                         <a href="/user/editLesson/{{$lesson->id}}" class="btn btn-secondary btn-sm">Edit</a>      
-                        <a href="/user/delete/{{$lesson->id}}" class="btn btn-danger btn-sm">Delete</a>
+                        <a href="/user/delete/{{$lesson->id}}" onclick="return confirm('Are you sure?')" class="btn btn-danger btn-sm">Delete</a>
                     </div>
                 </div>
             </div>

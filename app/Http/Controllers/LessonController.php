@@ -14,7 +14,7 @@ class LessonController extends Controller
 
     public function storeLesson(){
             $lessons = Auth::user()->lessons()->create(request()->all());        
-            return redirect('/user/myLessons/'.auth()->user()->id);
+            return redirect('/user/myLessons');
         }
 
     public function deleteLesson($lessonId){
@@ -22,8 +22,8 @@ class LessonController extends Controller
         return redirect()->back(); 
     }
 
-    public function editLesson($id){
-        $lesson = Lesson::find($id); 
+    public function editLesson($lessonId){
+        $lesson = Lesson::find($lessonId); 
         return view('lessons.addLesson', compact('lesson'));
     }
 
@@ -31,13 +31,19 @@ class LessonController extends Controller
 
         $lesson = Lesson::find($lessonId)->update(request()->all());
         
-        return redirect('/user/myLessons/'.auth()->user()->id);
+        return redirect('/user/myLessons');
 
     }
     
     public function showMyLessons(){
         $lessons = Auth::user()->lessons;
         return view('lessons.showMyLessons', compact('lessons'));
+    }
+
+    public function startQuiz($lessonId){
+        $quizzes = Lesson::find($lessonId)->quizzes()->paginate(1);
+
+        return view('quiz.answerQuiz', compact('quizzes' , 'lessonId'));
     }
         
 }

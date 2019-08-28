@@ -5,19 +5,34 @@
 @endsection -->
 
 @section('content')
-<div class="container-fluid">
-    <div class="row">
-        <div class="question col-md-6">
-            <input type="text" name="" value="" placeholder="">
+<form action="/user/updateQuiz/{{$lessonId}}" method="POST">
+    @csrf
+    <div class="container-fluid bg-brand">
+        <div class="in-front">
+            <div class="row question ">
+            @foreach($quizzes as $index => $quiz)
+                <div class="choices col-md-12 form-group">
+                    <p>
+                        <strong>
+                            Q.{{$index + 1}}
+                        </strong>
+                        : {{$quiz->question}}
+                    </p>
+                @foreach($quiz->choices as $key => $value)
+                    <label class="d-block">
+                        <input type="radio" name="answer" value="{{$key}}">{{$value->choice}}
+                    </label>
+                @endforeach
+                </div>
+            @endforeach
+                <div class="form-group text-right mt-3">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
         </div>
-
-        <div class="choices col-md-6">
-            <button type="button" class="btn btn-primary btn-lg btn-block">Block level button</button>
-            <button type="button" class="btn btn-secondary btn-lg btn-block">Block level button</button>
-            <button type="button" class="btn btn-secondary btn-lg btn-block">Block level button</button>
-            <button type="button" class="btn btn-secondary btn-lg btn-block">Block level button</button>
+        <div class="d-flex justify-content-center">
+            {{ $quizzes->links() }}
         </div>
     </div>
-</div>
-
+</form>
 @endsection('content')

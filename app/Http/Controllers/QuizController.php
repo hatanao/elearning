@@ -6,13 +6,14 @@ use Illuminate\Http\Request;
 use App\Lesson;
 use App\Quiz;
 use App\Choice;
+use App\LessonTaken;
 use Auth;
 
 class QuizController extends Controller
 {
     public function viewQuizzes($lessonId){
 
-        $quizzes = Lesson::find($lessonId)->quizzes;
+        $quizzes = Lesson::find($lessonId)->quizzes()->paginate(6);
 
         return view('quiz.viewQuizzes', ['lesson_id' => $lessonId , 'quizzes' => $quizzes]);
     }
@@ -37,23 +38,22 @@ class QuizController extends Controller
         }
 
         $quiz->answer_id = $answer;
-        $quiz->save();
 
+        
         if(request()->file('image')){
 
             request()->validate([
                 'image' => 'mimes:jpeg,bmp,png',
                 'image' => 'max:2048'
-            ]);
-
-            $file = request()->file('image')->getClientOriginalName(); 
-
-            request()->file('image')->storeAs('public/images', $file); 
-            
-            $user = User::find($id);
-            $user->avatar = '/storage/images/'.$file;
-            $user->save();
-        }
+                ]);
+                
+                $file = request()->file('image')->getClientOriginalName(); 
+                
+                request()->file('image')->storeAs('public/quizzes/images', $file); 
+                
+                $quiz->image = '/storage/quizzes/images/'.$file;
+            }
+            $quiz->save();
         
         return redirect('/user/viewQuizzes/'.$lessonId);
     }
@@ -66,13 +66,29 @@ class QuizController extends Controller
 
     public function updateQuiz($quizId){
 
-        $quiz = Quiz::find($quizId)->update(['question' => request()->question, 
-                                            'answer_id' => request()->answer]);
+        // $quiz = Quiz::find($quizId)->update(['question' => request()->question, 
+        //                                     'answer_id' => request()->answer]);
 
-        foreach(request()->choice as $key => $choice){
-            Choice::find($key)->update([
-                'choice' => $choice
+        // foreach(request()->choice as $key => $choice){
+        //     Choice::find($key)->update([
+        //         'choice' => $choice
+        //     ]);
+        // }
+
+        if(request()->file('image')){
+
+            request()->validate([
+                'image' => 'mimes:jpeg,bmp,png',
+                'image' => 'max:2048'
             ]);
+
+            $file = request()->file('image')->getClientOriginalName(); 
+
+            request()->file('image')->storeAs('public/quizzes/images', $file); 
+            
+            $quiz = Quiz::find($quizId);
+            $quiz->image = '/storage/quizzes/images/'.$file;
+            $quiz->save();
         }
 
         $quiz = Quiz::find($quizId);
@@ -84,5 +100,40 @@ class QuizController extends Controller
     public function deleteQuiz($quizId){
         Quiz::where('id', $quizId)->delete(); 
         return redirect()->back();
+    }
+
+    public function submitQuiz($lessonId, $quizId){
+
+        
+        //insert answer and lesson_taken_id to user_answer table
+        $userAnswer = Quiz::find($quizId)->userAnswers()
+        ->create(['choice_id' => request()->answer,
+        'lesson_taken_id' => request()->lesson_taken_id]);
+        
+        $lesson = Lesson::find($lessonId); //lesson which user is taking
+        
+        $quizzes = $lesson->quizzes()->where('id', '>' , $quizId); // get all the lessons' quizzes which is less than the current $quizId 
+        $next_id = $quizzes->min('id'); // set the lowest quizId from above quizzes 
+        
+        $lessonTaken = LessonTaken::find(request()->lesson_taken_id);
+        $quiz = Quiz::find($next_id); // set the $next_id to $quiz  
+        // return $quiz;
+
+        //if there's no more quiz return the result view
+        if($next_id == ''){
+            $lessonTaken = LessonTaken::with(['userAnswers'])->find(request()->lesson_taken_id); 
+            
+            // return $lessonTaken;
+            
+             $results = $lessonTaken->userAnswers; 
+
+             
+            //  return $results;
+            return view('lessons.showLessonResult' ,compact('quiz', 'results'));
+        }
+
+        return view('quiz.answerQuiz', compact('quiz' , 'lessonId', 'lessonTaken'));
+
+        
     }
 }

@@ -37,9 +37,17 @@ class HomeController extends Controller
     }
 
     public function showAllLessons(){
-        $lessons = Lesson::with(['user'])->get();
-        $collection = collect($lessons);
-        $sortedLessons = $collection->sortByDesc('user_id')->all();
+        
+        
+        $adminlessons = Lesson::has('quizzes' , '>' , 0 )->whereHas('user' , function($query){
+             $query->where('is_admin' , '=' , 1);
+        })->orderByDesc('created_at')->get();
+
+        $userlessons = Lesson::has('quizzes' , '>' , 0 )->whereHas('user' , function($query){
+            $query->where('is_admin' , '=' , 0);
+       })->orderByDesc('created_at')->get();
+
+        $sortedLessons =  $adminlessons->merge($userlessons);
 
         return view('lessons.lessons', compact('sortedLessons'));
     }

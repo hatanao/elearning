@@ -34,4 +34,16 @@ class AdminController extends Controller
 
        return redirect('/home'); 
     }
+
+    public function showUsers()
+    {
+        $users = User::where("id" , "!=" , Auth::user()->id)->paginate(3);
+
+        return view('admin.usersListForAdmin', compact('users'));
+    }
+
+    public function deleteUser($userId){
+        User::where('id', $userId)->delete(); 
+        return redirect()->back ();
+    }
 }

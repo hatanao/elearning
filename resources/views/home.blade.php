@@ -21,10 +21,10 @@
                 <div class="panel-body">
                     <div class="text-center">
                         <div class="avatar">
-                            <img src="{{ Auth::user()->avatar }}" class="rounded-circle" style="width: 10vw;height: 10vw;">
+                            <img src="{{ Auth::user()->avatar }}" class="rounded-circle" style="width: 15vw;height: 15vw;">
                         </div>
 
-                        <div class="py-2">
+                        <div class="py-3">
                             <h2>{{ Auth::user()->name }}</h2>
                             <a href="/user/edit/{{Auth::user()->id}}" class="btn btn-primary">Edit profile</a>
                         </div>

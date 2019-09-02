@@ -42,7 +42,8 @@ Route::group(['middleware'=>'auth'], function () {
         Route::get('editQuiz/{quizId}', 'QuizController@editQuiz');
         Route::post('updateQuiz/{quizId}', 'QuizController@updateQuiz');
         Route::get('deleteQuiz/{quizId}', 'QuizController@deleteQuiz');
-        Route::get('startQuiz/{lessonId}', 'LessonController@startQuiz');
+        Route::get('answerQuiz/{lessonId}', 'LessonController@answerQuiz');
+        Route::post('{lessonId}/quiz/{quizId}/answer/submit', 'QuizController@submitQuiz');
     });
     
 });
@@ -50,4 +51,6 @@ Route::group(['middleware'=>'auth'], function () {
         Route::get('login', 'AdminController@adminLogin');
         Route::get('register', 'AdminController@adminShowRegister');
         Route::post('register', 'AdminController@adminRegister')->name('admin.register');
+        Route::get('users', 'AdminController@showUsers');
+        Route::get('delete/{lessonId}', 'AdminController@deleteUser');
     });

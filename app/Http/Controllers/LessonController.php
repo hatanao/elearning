@@ -36,14 +36,23 @@ class LessonController extends Controller
     }
     
     public function showMyLessons(){
-        $lessons = Auth::user()->lessons;
+        $lessons = Auth::user()->lessons()->orderBy('created_at','desc')->get();
         return view('lessons.showMyLessons', compact('lessons'));
     }
 
-    public function startQuiz($lessonId){
-        $quizzes = Lesson::find($lessonId)->quizzes()->paginate(1);
+    public function answerQuiz($lessonId){
+        $quiz = Lesson::find($lessonId)->quizzes()->first();
 
-        return view('quiz.answerQuiz', compact('quizzes' , 'lessonId'));
+        $lessonTaken = Auth::user()->lessonTakens()
+                                    ->create([
+                                        'lesson_id' => $lessonId
+                                        ]); 
+                                                  
+        if($quiz == ''){
+            return redirect()->back();
+        }
+
+        return view('quiz.answerQuiz', compact('quiz' , 'lessonId', 'lessonTaken'));
     }
         
 }

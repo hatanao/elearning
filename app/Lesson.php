@@ -15,4 +15,7 @@ class Lesson extends Model
     public function quizzes(){
         return $this->hasMany('App\Quiz');
     }
+    public function lessonTakens(){
+        return $this->hasMany('App\LessonTaken');
+    }
 }

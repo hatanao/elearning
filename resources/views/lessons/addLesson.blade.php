@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container in-front">
+<div class="container">
     <div class="row d-flex justify-content-center">
-        <div class="col-sm-10">
+        <div class="col-md-9">
             <h1>
-                {{isset($lesson) ? "Edit Suggestion".$lesson->id : "Add a Suggestion"}}
+                {{isset($lesson) ? "Edit Lesson".$lesson->id : "Add a Lesson"}}
             </h1>
             <form 
                 action={{ isset($lesson) ? "/user/updateLesson/".$lesson->id : "/user/storeLesson/".Auth::user()->id}}
@@ -32,9 +32,9 @@
                             placeholder=""
                             value={{isset($lesson) ? $lesson->description : ""}}>
                 </div>
-                <div class="form-group text-right">
-                        <button type="submit" class="btn btn-primary">{{isset($lesson) ? 'Update' : 'Create'}}</button>
-                        <a href="/user/myLessons" class="btn btn-secondary">Back</a>
+                <div class="form-group text-right pt-2">
+                    <a href="/user/myLessons" class="btn mr-2 btn-secondary">Back</a>
+                    <button type="submit" class="btn btn-primary">{{isset($lesson) ? 'Update' : 'Create'}}</button>
                 </div>
             </form>
         </div>

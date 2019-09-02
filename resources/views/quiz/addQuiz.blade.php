@@ -5,13 +5,14 @@
 @endsection -->
 
 @section('content')
-<form action="/user/storeQuiz/{{$lesson_id}}" method="POST">
+<form action="/user/storeQuiz/{{$lesson_id}}" method="POST" enctype="multipart/form-data">
 @csrf
 <div class="container-fluid px-5">
     <div class="row">
         <div class="question col-md-6 form-group">
             <h4>Question</h4>
-            <input type="text" required class="form-control" name="question" placeholder="">
+            <input type="text" required class="form-control mb-3" name="question" placeholder="">
+            <input type="file" name="image">
         </div>
 
         <div class="choices col-md-6 form-group">
@@ -25,11 +26,8 @@
             @endforeach
             
         </div>
-        <div class="py-2">
-            <input type="file" name="image" class="col-lg-8">
-        </div>
-        <div class="form-group text-right">
-            <button type="submit" class="btn btn-primary">Add</button>
+        <div class="form-group col-md-12" style="text-align: end;">
+            <button type="submit" class="btn btn-primary mr-2">Add</button>
             <a href="/user/viewQuizzes/{{$lesson_id}}" class="btn btn-secondary">Back</a>
         </div>
     </div>

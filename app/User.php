@@ -57,4 +57,7 @@ class User extends Authenticatable
     public function choices(){
         return $this->hasMany('App\Choice');
     }
+    public function lessonTakens(){
+        return $this->hasMany('App\LessonTaken');
+    }
 }

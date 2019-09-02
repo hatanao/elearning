@@ -14,4 +14,7 @@ class Choice extends Model
     public function users(){
         return $this->hasMany('App\User');
     }   
+    public function userAnswers(){
+        return $this->hasMany('App\userAnswer');
+    }   
 }

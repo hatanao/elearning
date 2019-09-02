@@ -7,7 +7,7 @@
 @section('content')
 
 <div class="container in-front">
-    <ul class="nav nav-tabs mb-3">
+    <ul class="nav nav-tabs ">
         <li class="nav-item">
             <a class="nav-link" href="/user/lessons">All Lessons</a>
         </li>
@@ -15,24 +15,26 @@
             <a class="nav-link" href="/user/myLessons">My Lessons</a>
         </li>
     </ul>
-    <div class="row" style="justify-content: flex-end;">
-    <div class="text-right pr-5 mb-3">
+    <div class="row py-4" style="justify-content: flex-end;">
+    <div class="text-right pr-4">
         <a href="/user/addLesson/{{Auth::user()->id}}" class="btn btn-primary" style>add lesson</a>
     </div>
     </div>
     <div class="row">
         @foreach($lessons as $lesson)
-        <div class="col-sm-12 col-md-6 col-lg-4  mb-4">
-            <div class="card" style="width: 18rem;">
+        <div class="col-sm-6 col-md-6 col-lg-4  mb-4">
+            <div class="card" style="; background: rgba(29, 29, 29, 0.8);">
                 <img src="{{$lesson->user->avatar}}" class="card-img-top" alt="steve jobs">
-                <div class="card-body">
-                    <h5 class="card-title"><a href="/user/viewQuizzes/{{$lesson->id}}">{{$lesson->title}}</a></h5>
-                    <p class="card-text">{{$lesson->description}}</p>
-                    <div class="">
-                        <a href="/user/startQuiz/{{$lesson->id}}" class="btn btn-primary">Start</a>
-                        <a href="/user/editLesson/{{$lesson->id}}" class="btn btn-secondary btn-sm">Edit</a>      
-                        <a href="/user/delete/{{$lesson->id}}" onclick="return confirm('Are you sure?')" class="btn btn-danger btn-sm">Delete</a>
-                    </div>
+                <div class="card-body text-center">
+                    <h2 class="card-title"><a href="/user/viewQuizzes/{{$lesson->id}}">{{$lesson->title}}</a></h2>
+                        <div>
+                            <a href="/user/answerQuiz/{{$lesson->id}}" class="btn btn-primary btn-block mb-3 {{$lesson->quizzes->count() ? '' : 'disabled'}}">
+                                Start
+                            </a>
+
+                            <a href="/user/editLesson/{{$lesson->id}}" class="btn btn-secondary btn-sm mr-2">Edit</a>      
+                            <a href="/user/delete/{{$lesson->id}}" onclick="return confirm('Are you sure to delete the lesson? All the quizzes inside will be deleted.')" class="btn btn-danger btn-sm">Delete</a>
+                        </div>
                 </div>
             </div>
         </div>

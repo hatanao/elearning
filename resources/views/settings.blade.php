@@ -21,7 +21,7 @@
                 </div>
             @endif
                 <img src="{{ Auth::user()->avatar }}" class="rounded-circle" style="width: 10vw; height: 10vw;">
-                <div class="py-2">
+                <div class="py-4">
                     <input type="file" name="image" class="col-lg-8">
                 </div>
             </div>
@@ -45,7 +45,7 @@
                 <label for="confirm_password">Confirm Password</label>
                 <input type="password" class="form-control" id="confirm_password" name="password_confirmation">
             </div>
-            <div class="text-center">
+            <div class="text-center py-2">
                 <input type="submit" class="btn btn-primary">
             </div>
             </form>

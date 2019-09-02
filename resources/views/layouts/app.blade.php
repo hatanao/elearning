@@ -21,12 +21,13 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/main.css') }}" rel="stylesheet">
     <link href="{{ asset('css/bg-image.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/hue.css') }}" rel="stylesheet">
     @yield('css')
 
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light navbar-laravel" style="background-color: #313030;">
+        <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container-fluid">
                 <a class="navbar-brand" href="{{ url('/home') }}"><img src={{asset('images/logo.png')}} alt="" style="width: 35px;">
                     <!-- {{ config('app.name', 'Home') }} -->
@@ -84,7 +85,7 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main class="py-4 silverStone" style="min-height: -webkit-fill-available;">
             @yield('content')
     
         </main>

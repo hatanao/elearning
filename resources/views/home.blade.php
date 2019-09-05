@@ -45,22 +45,22 @@
                 </div>
             </div>
         </div>
-            <div class="col-md-9 col-lg-9 mb-4">
-                <div class="row">
-                @foreach($completeLessons as $completeLesson)
-                    <div class="col-sm-12 col-md-6 col-lg-4 m-2">
-                        <div class="card text-center">
-                            <img src="{{$completeLesson->user->avatar}}" class="card-img-top">
-                            <div class="card-body">
-                                <h2 class="card-title">{{$completeLesson->lesson->title}}</h2>
-                                <a href="/user/answerQuiz/" class="btn btn-block btn-primary">Start</a>
-                            </div>
+        <div class="col-md-9 col-lg-9 mb-4">
+            <div class="row">
+            @foreach($completeLessons as $completeLesson)
+                <div class="col-sm-12 col-md-6 col-lg-4 m-2">
+                    <div class="card text-center">
+                        <img src="{{$completeLesson->user->avatar}}" class="card-img-top">
+                        <div class="card-body">
+                            <h2 class="card-title">{{$completeLesson->lesson->title}}</h2>
+                            <a href="/user/answerQuiz/" class="btn btn-block btn-primary">Start</a>
                         </div>
                     </div>
-                @endforeach
                 </div>
-                
+            @endforeach
             </div>
+            
+        </div>
     </div>
 </div>
 @endsection

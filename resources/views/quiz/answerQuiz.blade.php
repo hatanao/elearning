@@ -6,22 +6,20 @@
     <input type="hidden" name="lesson_taken_id" value={{$lessonTaken->id}}>
     <div class="container">
     <div class="card px-4">
-            <div class="row question ">
+            <div class="row">
                 <div class="col-md-12 form-group">
-                    <p>
-                        <strong>
-                        @foreach ($quiz as $key => $value)
-                            {{ $loop->iteration }}
-                        @endforeach
-                        </strong>
-                        : {{$quiz->question}}
-                    </p>
-                    @if($quiz->image)
-                        <img src={{$quiz->image}} alt="" style="width: 5vw; height: 5vw;">
-                    @endif
+                    <div class="row">
+
+                        <h5 class="card-title col-8">
+                          Q{{isset($quiz_number) ? $quiz_number : 1}}: {{$quiz->question}}
+                        </h5>
+                        @if($quiz->image)
+                            <img src="{{$quiz->image}}" class="col-4" alt="" style="width: 10vw; height: 10vw;">
+                        @endif
+                    </div>
                     @foreach($quiz->choices as $key => $choice)
                         <label class="d-block">
-                            <input type="radio" required name="answer" value="{{$choice->id}}">{{$choice->choice}}
+                            <input type="radio" required name="answer" value="{{$choice->id}}"> {{$choice->choice}}
                         </label>
                     @endforeach
                     <div class="form-group text-right mt-3">

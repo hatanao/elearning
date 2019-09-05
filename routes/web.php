@@ -44,13 +44,17 @@ Route::group(['middleware'=>'auth'], function () {
         Route::get('deleteQuiz/{quizId}', 'QuizController@deleteQuiz');
         Route::get('answerQuiz/{lessonId}', 'LessonController@answerQuiz');
         Route::post('{lessonId}/quiz/{quizId}/answer/submit', 'QuizController@submitQuiz');
+
+        Route::get('showResult/{lessonTakenId}', 'LessonController@showResult');
     });
-    
+
+
+    Route::get('/admin/home', 'AdminController@index')->name('adminhome');
 });
-    Route::group(['prefix'=>'admin'], function () {
+    Route::group(['prefix'=>'admin' ,'middleware'=>'guest'], function () {
+
+        Route::post('submit/login' , 'Auth\AdminLoginController@login');
         Route::get('login', 'AdminController@adminLogin');
-        Route::get('register', 'AdminController@adminShowRegister');
-        Route::post('register', 'AdminController@adminRegister')->name('admin.register');
         Route::get('users', 'AdminController@showUsers');
         Route::get('delete/{lessonId}', 'AdminController@deleteUser');
     });

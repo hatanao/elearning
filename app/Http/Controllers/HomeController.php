@@ -26,12 +26,14 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $completeLessons = Auth::user()->lessonTakens->where('is_complete', 1)->unique('lesson_id'); 
+
+        return view('home', compact('completeLessons'));
     }
 
     public function showUsers()
     {
-        $users = User::where("id" , "!=" , Auth::user()->id)->paginate(3);
+        $users = User::where("id" , "!=" , Auth::user()->id)->paginate(5);
 
         return view('users.usersList', compact('users'));
     }

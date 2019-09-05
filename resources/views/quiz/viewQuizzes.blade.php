@@ -13,20 +13,20 @@
       </div>
     </div>
     <div class="row text-center">
-      @foreach($quizzes as $quiz)
+      @foreach($quizzes as $index => $quiz)
         <div class="col-md-6 col-lg-4">
           <div class="card mb-4">
             <div class="card-body row">
               @if($quiz->image)
-                <h5 class="card-title col-8">{{$quiz->question}}</h5>
+                <h5 class="card-title col-8">Q{{$index+1}}: {{$quiz->question}}</h5>
                 <img src="{{$quiz->image}}" class="col-4" alt="" style="width: 10vw; height: 10vw;">
               @else
-                <h5 class="card-title">{{$quiz->question}}</h5>
+                <h5 class="card-title">Q{{$index+1}}: {{$quiz->question}}</h5>
               @endif
             </div>
             <ul class="list-group list-group-flush">
               @foreach($quiz->choices as $choice)
-              <li class="list-group-item">{{$choice->choice}}</li>
+              <li class="list-group-item" style="background-color: unset;">{{$choice->choice}}</li>
               @endforeach
             </ul>
             <div class="card-body">

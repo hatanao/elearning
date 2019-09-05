@@ -24,8 +24,10 @@
                 <h4>Choices</h4>
 
                 @foreach($quiz->choices as $key => $value)
-                    <input type="radio" name="answer" value="{{$value->id}}">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="answer" value="{{$value->id}}">
                     <input type="text" required class="form-control mb-3" name="choice[{{$value->id}}]" placeholder="" value="{{$value->choice}}">
+                </div>
                 @endforeach
             </div>
             <div class="form-group col-md-12" style="text-align: end;">

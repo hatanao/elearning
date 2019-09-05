@@ -8,7 +8,7 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-4">
-            <div class="panel user-profile bg-white p-3">
+            <div class="panel user-profile card p-3">
                 <div class="panel-body">
                     <div class="text-center">
                         <div class="avatar">

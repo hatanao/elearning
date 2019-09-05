@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use App\Lesson;
+use App\LessonTaken;
 
 class LessonController extends Controller
 {
@@ -47,12 +48,23 @@ class LessonController extends Controller
                                     ->create([
                                         'lesson_id' => $lessonId
                                         ]); 
-                                                  
+                                     
+        // if the user click the lesson start which doesn't have quiz in it, it'll return to the original page                                         
         if($quiz == ''){
+            
             return redirect()->back();
         }
 
         return view('quiz.answerQuiz', compact('quiz' , 'lessonId', 'lessonTaken'));
+    }
+
+    public function showResult($lessonTakenId){
+        $lessonTaken = LessonTaken::with(['userAnswers'])->find($lessonTakenId); 
+        
+        
+        $results = $lessonTaken->userAnswers;
+             
+        return view('lessons.showLessonResult' ,compact('results'));
     }
         
 }

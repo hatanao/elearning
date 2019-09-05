@@ -116,24 +116,26 @@ class QuizController extends Controller
         $next_id = $quizzes->min('id'); // set the lowest quizId from above quizzes 
         
         $lessonTaken = LessonTaken::find(request()->lesson_taken_id);
-        $quiz = Quiz::find($next_id); // set the $next_id to $quiz  
-        // return $quiz;
+        $quiz = Quiz::find($next_id); // set the $next_id to $quiz 
 
-        //if there's no more quiz return the result view
+        $quiz_number = $lesson->quizzes->search($quiz) + 1;
+        // return $quiz_number;
+
+        //if there's no more quiz update is_complete value and return the result view
         if($next_id == ''){
-            $lessonTaken = LessonTaken::with(['userAnswers'])->find(request()->lesson_taken_id); 
-            
-            // return $lessonTaken;
-            
-             $results = $lessonTaken->userAnswers; 
 
-             
-            //  return $results;
-            return view('lessons.showLessonResult' ,compact('quiz', 'results'));
+            $lessonTaken->update([
+                "is_complete" => 1
+            ]);
+            return redirect('/user/showResult/'.request()->lesson_taken_id);
         }
 
-        return view('quiz.answerQuiz', compact('quiz' , 'lessonId', 'lessonTaken'));
+        return view('quiz.answerQuiz', compact('quiz' , 'lessonId', 'lessonTaken' , 'quiz_number'));
 
         
+    }
+
+    public function showAllActivityLog(){
+        $lessonTaken = LessonTaken::find(request()->lesson_taken_id);
     }
 }

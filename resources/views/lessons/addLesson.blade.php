@@ -5,14 +5,14 @@
     <div class="row d-flex justify-content-center">
         <div class="col-md-9">
             <h1>
-                {{isset($lesson) ? "Edit Lesson".$lesson->id : "Add a Lesson"}}
+                {{isset($lesson) ? "Edit Lesson" : "Add a Lesson"}}
             </h1>
             <form 
                 action={{ isset($lesson) ? "/user/updateLesson/".$lesson->id : "/user/storeLesson/".Auth::user()->id}}
                 method="POST">
                 @csrf
                 <div class="form-group">
-                    <label for="title" class="col-sm-2 col-form-label">Title</label>
+                    <label for="title" class="col-sm-2 col-form-label"><h5>Title</h5></label>
                         <input type="text" 
                                required 
                                class="form-control" 
@@ -22,7 +22,7 @@
                                value={{isset($lesson) ? $lesson->title : ""}}>
                 </div>
                 <div class="form-group">
-                    <label for="description" class="col-sm-2 col-form-label">Description</label>
+                    <label for="description" class="col-sm-2 col-form-label"><h5>Description</h5></label>
                         <input 
                             type="text" 
                             required 

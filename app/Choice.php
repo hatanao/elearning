@@ -11,4 +11,10 @@ class Choice extends Model
     public function quiz(){
         return $this->belongsTo('App\Quiz');
     }   
+    public function users(){
+        return $this->hasMany('App\User');
+    }   
+    public function userAnswers(){
+        return $this->hasMany('App\userAnswer');
+    }   
 }

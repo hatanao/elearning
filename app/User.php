@@ -54,4 +54,10 @@ class User extends Authenticatable
     public function lessons(){
         return $this->hasMany('App\Lesson');
     }
+    public function choices(){
+        return $this->hasMany('App\Choice');
+    }
+    public function lessonTakens(){
+        return $this->hasMany('App\LessonTaken');
+    }
 }

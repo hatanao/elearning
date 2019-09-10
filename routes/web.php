@@ -30,19 +30,31 @@ Route::group(['middleware'=>'auth'], function () {
         Route::get('follow/{id}', 'UserController@follow');
         Route::get('unfollow/{id}', 'UserController@unfollow');
         Route::get('lessons', 'HomeController@showAllLessons');
-        Route::get('addLesson/{id}', 'LessonController@addLesson');
+        Route::get('addLesson/{userId}', 'LessonController@addLesson');
         Route::post('storeLesson/{id}', 'LessonController@storeLesson');
-        Route::get('editLesson/{id}', 'LessonController@editLesson');    
+        Route::get('editLesson/{lessonId}', 'LessonController@editLesson');    
         Route::post('updateLesson/{lessonId}', 'LessonController@updateLesson');    
         Route::get('delete/{lessonId}', 'LessonController@deleteLesson');    
         Route::get('myLessons', 'LessonController@showMyLessons');    
-        Route::get('viewQuizzes/{id}', 'QuizController@viewQuizzes');    
-        Route::get('addQuiz/{id}', 'QuizController@addQuiz');    
+        Route::get('viewQuizzes/{lessonId}', 'QuizController@viewQuizzes');    
+        Route::get('addQuiz/{lessonId}', 'QuizController@addQuiz');    
+        Route::post('storeQuiz/{lessonId}', 'QuizController@storeQuiz');
+        Route::get('editQuiz/{quizId}', 'QuizController@editQuiz');
+        Route::post('updateQuiz/{quizId}', 'QuizController@updateQuiz');
+        Route::get('deleteQuiz/{quizId}', 'QuizController@deleteQuiz');
+        Route::get('answerQuiz/{lessonId}', 'LessonController@answerQuiz');
+        Route::post('{lessonId}/quiz/{quizId}/answer/submit', 'QuizController@submitQuiz');
+
+        Route::get('showResult/{lessonTakenId}', 'LessonController@showResult');
     });
-    
+
+
+    Route::get('/admin/home', 'AdminController@index')->name('adminhome');
 });
-    Route::group(['prefix'=>'admin'], function () {
+    Route::group(['prefix'=>'admin' ,'middleware'=>'guest'], function () {
+
+        Route::post('submit/login' , 'Auth\AdminLoginController@login');
         Route::get('login', 'AdminController@adminLogin');
-        Route::get('register', 'AdminController@adminShowRegister');
-        Route::post('register', 'AdminController@adminRegister')->name('admin.register');
+        Route::get('users', 'AdminController@showUsers');
+        Route::get('delete/{lessonId}', 'AdminController@deleteUser');
     });

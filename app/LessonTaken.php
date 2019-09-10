@@ -4,16 +4,15 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Quiz extends Model
+class LessonTaken extends Model
 {
     protected $guarded = [];
     
+    public function user(){
+        return $this->belongsTo('App\User');
+    }
     public function lesson(){
         return $this->belongsTo('App\Lesson');
-    }
-
-    public function choices(){
-        return $this->hasMany('App\Choice');
     }
     public function userAnswers(){
         return $this->hasMany('App\UserAnswer');

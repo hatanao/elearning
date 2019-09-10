@@ -55,7 +55,7 @@ class UserController extends Controller
             
         }
 
-        return view('home')->with('success' , 'message'); 
+        return view('home')->with('success' , 'Success! Your information has been changed!'); 
     }
 
     public function showFollowing(){

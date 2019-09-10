@@ -1,23 +1,33 @@
 @extends('layouts.app')
 
-<!-- @section('css')
-<link href="{{ asset('css/showLessons.css') }}" rel="stylesheet">
-@endsection -->
-
 @section('content')
-<div class="container-fluid">
-    <div class="row">
-        <div class="question col-md-6">
-            <input type="text" name="" value="" placeholder="">
-        </div>
+<form action="/user/{{$lessonId}}/quiz/{{$quiz->id}}/answer/submit" method="POST">
+    @csrf
+    <input type="hidden" name="lesson_taken_id" value={{$lessonTaken->id}}>
+    <div class="container">
+    <div class="card px-4">
+            <div class="row">
+                <div class="col-md-12 form-group">
+                    <div class="row">
 
-        <div class="choices col-md-6">
-            <button type="button" class="btn btn-primary btn-lg btn-block">Block level button</button>
-            <button type="button" class="btn btn-secondary btn-lg btn-block">Block level button</button>
-            <button type="button" class="btn btn-secondary btn-lg btn-block">Block level button</button>
-            <button type="button" class="btn btn-secondary btn-lg btn-block">Block level button</button>
+                        <h5 class="card-title col-8">
+                          Q{{isset($quiz_number) ? $quiz_number : 1}}: {{$quiz->question}}
+                        </h5>
+                        @if($quiz->image)
+                            <img src="{{$quiz->image}}" class="col-4" alt="" style="width: 10vw; height: 10vw;">
+                        @endif
+                    </div>
+                    @foreach($quiz->choices as $key => $choice)
+                        <label class="d-block">
+                            <input type="radio" required name="answer" value="{{$choice->id}}"> {{$choice->choice}}
+                        </label>
+                    @endforeach
+                    <div class="form-group text-right mt-3">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-</div>
-
+</form>
 @endsection('content')

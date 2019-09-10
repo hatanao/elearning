@@ -5,27 +5,40 @@
 @endsection -->
 
 @section('content')
-<div class="container-fluid bg-brand">
-  <div class="in-front">
+<div class="container-fluid">
+  <div class="">
     <div class="row" style="justify-content: flex-end;">
       <div class="float-right pr-5 mb-3">
-          <a href="/user/addQuiz/{{Auth::user()->id}}" class="btn btn-primary" style>add Quiz</a>
+          <a href="/user/addQuiz/{{$lesson_id}}" class="btn btn-primary" style>add Quiz</a>
       </div>
     </div>
-    <div class="card" style="width: 18rem;">
-      <div class="card-body">
-        <h5 class="card-title">Question</h5>
-      </div>
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item">Cras justo odio</li>
-        <li class="list-group-item">Dapibus ac facilisis in</li>
-        <li class="list-group-item">Vestibulum at eros</li>
-        <li class="list-group-item">Vestibulum at eros</li>
-      </ul>
-      <div class="card-body">
-        <a href="" class="btn btn-secondary btn-sm card-link">Edit</a>      
-        <a href="" class="btn btn-danger btn-sm card-link">Delete</a>
-      </div>
+    <div class="row text-center">
+      @foreach($quizzes as $index => $quiz)
+        <div class="col-md-6 col-lg-4">
+          <div class="card mb-4">
+            <div class="card-body row">
+              @if($quiz->image)
+                <h5 class="card-title col-8">Q{{$index+1}}: {{$quiz->question}}</h5>
+                <img src="{{$quiz->image}}" class="col-4" alt="" style="width: 10vw; height: 10vw;">
+              @else
+                <h5 class="card-title">Q{{$index+1}}: {{$quiz->question}}</h5>
+              @endif
+            </div>
+            <ul class="list-group list-group-flush">
+              @foreach($quiz->choices as $choice)
+              <li class="list-group-item" style="background-color: unset;">{{$choice->choice}}</li>
+              @endforeach
+            </ul>
+            <div class="card-body">
+              <a href="/user/editQuiz/{{$quiz->id}}" class="btn btn-secondary btn-sm card-link">Edit</a>      
+              <a href="/user/deleteQuiz/{{$quiz->id}}" class="btn btn-danger btn-sm card-link">Delete</a>
+            </div>
+          </div>
+        </div>
+      @endforeach
+    </div>
+    <div class="d-flex pt-3 justify-content-center">
+          {{ $quizzes->links() }}
     </div>
   </div>
 </div>

@@ -8,16 +8,16 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-4">
-            <div class="panel user-profile bg-white p-3">
+            <div class="panel user-profile card p-3">
                 <div class="panel-body">
                     <div class="text-center">
                         <div class="avatar">
                             <div class="default">
-                                <img src="{{ Auth::user()->avatar }}" class="rounded-circle" style="width: 10vw; height: 10vw;">
+                                <img src="{{ Auth::user()->avatar }}" class="rounded-circle" style="width: 15vw; height: 15vw;">
                             </div>
                         </div>
 
-                        <div class="py-2">                        
+                        <div class="py-3">                        
                             <h2>{{ $user->name }}</h2>
                                 @if(Auth::user()->is_following($user->id))
                                     <div class="ml-auto">
@@ -33,12 +33,12 @@
 
                         <div class="row mt-15">
                             <div class="col-sm-6">
-                                <strong><a href="/user/followingList">{{ $user->following()->count() }}</a></strong>
                                 <div>following</div>
+                                <strong><a href="/user/followingList">{{ $user->following()->count() }}</a></strong>
                             </div>
-                                <div class="col-sm-6">
-                                    <strong><a href="/user/followerList">{{ $user->followers()->count() }}</a></strong>
+                            <div class="col-sm-6">
                                 <div>followers</div>
+                                <strong><a href="/user/followerList">{{ $user->followers()->count() }}</a></strong>
                             </div>
                         </div>
                     </div>

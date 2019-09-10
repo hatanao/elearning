@@ -26,20 +26,30 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $completeLessons = Auth::user()->lessonTakens->where('is_complete', 1)->unique('lesson_id'); 
+
+        return view('home', compact('completeLessons'));
     }
 
     public function showUsers()
     {
-        $users = User::where("id" , "!=" , Auth::user()->id)->paginate(3);
+        $users = User::where("id" , "!=" , Auth::user()->id)->paginate(5);
 
         return view('users.usersList', compact('users'));
     }
 
     public function showAllLessons(){
-        $lessons = Lesson::with(['user'])->get();
-        $collection = collect($lessons);
-        $sortedLessons = $collection->sortByDesc('user_id')->all();
+        
+        
+        $adminlessons = Lesson::has('quizzes' , '>' , 0 )->whereHas('user' , function($query){
+             $query->where('is_admin' , '=' , 1);
+        })->orderByDesc('created_at')->get();
+
+        $userlessons = Lesson::has('quizzes' , '>' , 0 )->whereHas('user' , function($query){
+            $query->where('is_admin' , '=' , 0);
+       })->orderByDesc('created_at')->get();
+
+        $sortedLessons =  $adminlessons->merge($userlessons);
 
         return view('lessons.lessons', compact('sortedLessons'));
     }

@@ -20,12 +20,13 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/main.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/bg-image.css') }}" rel="stylesheet">
     @yield('css')
 
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
+        <nav class="navbar navbar-expand-md navbar-light navbar-laravel" style="background-color: #313030;">
             <div class="container-fluid">
                 <a class="navbar-brand" href="{{ url('/home') }}"><img src={{asset('images/logo.png')}} alt="" style="width: 35px;">
                     <!-- {{ config('app.name', 'Home') }} -->
@@ -36,13 +37,7 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                @if (Auth::check())
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
-                        <a class="nav-link" href="/user/addLessons/{{Auth::user()->id}}"><i class="fas fa-folder-plus">Create</i></a>
-                        </li>
-                    </ul>
-                @endif
+                
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto nav-right">
                         <!-- Authentication Links -->
@@ -57,7 +52,7 @@
                             @endif
                         @else
                         <li class="nav-item">
-                            <a class="nav-link" href="/user/lessons/{{Auth::user()->id}}"><i class="fas fa-book">Lessons</i></a>
+                            <a class="nav-link" href="/user/lessons"><i class="fas fa-book">Lessons</i></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/user"><i class="fas fa-user-friends">Users</i></a>
@@ -89,7 +84,7 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main class="">
             @yield('content')
     
         </main>

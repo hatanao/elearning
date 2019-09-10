@@ -7,32 +7,39 @@ use Auth;
 use Hash;
 use App\User;
 use Storage;
+use Validator;
 
 class UserController extends Controller
 {
     public function edit($id)
     {   
-
-        $is_image = false;
-        if (Storage::disk('local')->exists('public/profile_images/' . Auth::id() . '.jpg')) {
-            $is_image = true;
-        }
         $user = Auth::user();
-        return view('settings', compact('user' ,'is_image'));
+        return view('settings', compact('user'));
     }
 
-    public function update($id)
-    {
-
-        $file = request()->file('image')->getClientOriginalName();
-
-        request()->file('image')->storeAs('public/images', $file);
+    public function update($id){
 
         $user = Auth::user()->update([
             'name' => request()->new_name,
             'email' => request()->new_email,
-            'avatar' => '/storage/images/'.$file
         ]);
+
+
+        if(request()->file('image')){
+
+            request()->validate([
+                'image' => 'mimes:jpeg,bmp,png',
+                'image' => 'max:2048'
+            ]);
+
+            $file = request()->file('image')->getClientOriginalName(); 
+
+            request()->file('image')->storeAs('public/images', $file); 
+            
+            $user = User::find($id);
+            $user->avatar = '/storage/images/'.$file;
+            $user->save();
+        }
         if(request()->password){
             //validation rule
             request()->validate([
@@ -47,14 +54,16 @@ class UserController extends Controller
             }
             
         }
-        return redirect('home');
+
+        return view('home')->with('success' , 'message'); 
     }
+
     public function showFollowing(){
-        $users = Auth::user()->following()->get();
+        $users = Auth::user()->following()->paginate(3);
         return view('users.usersList', compact('users'));
     }
     public function showFollowers(){
-        $users = Auth::user()->followers()->get();
+        $users = Auth::user()->followers()->paginate(3);
         return view('users.usersList', compact('users'));
     }
 

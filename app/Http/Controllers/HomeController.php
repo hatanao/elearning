@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Lesson;
+use Auth;
 
 class HomeController extends Controller
 {
@@ -29,12 +31,16 @@ class HomeController extends Controller
 
     public function showUsers()
     {
-        $users = User::all();
+        $users = User::where("id" , "!=" , Auth::user()->id)->paginate(3);
 
         return view('users.usersList', compact('users'));
     }
 
-    public function showLessons($id){
-        return view('lessons.lessons');
+    public function showAllLessons(){
+        $lessons = Lesson::with(['user'])->get();
+        $collection = collect($lessons);
+        $sortedLessons = $collection->sortByDesc('user_id')->all();
+
+        return view('lessons.lessons', compact('sortedLessons'));
     }
 }

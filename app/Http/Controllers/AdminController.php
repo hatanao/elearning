@@ -9,9 +9,6 @@ use Auth;
 
 class AdminController extends Controller
 {
-    public function adminLogin(){
-        return view('auth.adminLogin');
-    }
 
     public function index(){
         $users = User::where("id" , "!=" , Auth::user()->id)->paginate(3);

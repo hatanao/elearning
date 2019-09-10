@@ -48,13 +48,17 @@ Route::group(['middleware'=>'auth'], function () {
         Route::get('showResult/{lessonTakenId}', 'LessonController@showResult');
     });
 
-
-    Route::get('/admin/home', 'AdminController@index')->name('adminhome');
 });
-    Route::group(['prefix'=>'admin' ,'middleware'=>'guest'], function () {
+    Route::group(['prefix'=>'admin'], function () {
 
-        Route::post('submit/login' , 'Auth\AdminLoginController@login');
-        Route::get('login', 'AdminController@adminLogin');
-        Route::get('users', 'AdminController@showUsers');
-        Route::get('delete/{lessonId}', 'AdminController@deleteUser');
+        // if i
+        Route::group(['middleware' => 'admin'], function(){
+            Route::get('home', 'AdminController@index')->name('adminhome');
+            Route::get('users', 'AdminController@showUsers');
+            Route::get('delete/{lessonId}', 'AdminController@deleteUser');
+        });
+
+        //if you're logout
+        Route::group(['middleware' => 'guest'], function(){
+        });
     });

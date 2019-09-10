@@ -12,7 +12,7 @@
                 <div class="panel-body">
                     <div class="text-center">
                         <div class="avatar">
-                            <img src="/images/{{ Auth::user()->avatar }}" class="rounded-circle" style="width: 75px;">
+                            <img src="{{ Auth::user()->avatar }}" class="rounded-circle" style="width: 10vw;height: 10vw;">
                         </div>
 
                         <div class="py-2">
@@ -25,11 +25,11 @@
                         <div class="row mt-15">
                             <div class="col-sm-6">
                                 <div>following</div>
-                                <strong><a href="/user/followinglist">{{Auth::user()->following()->count()}}</a></strong>
+                                <strong><a href="/users/followingList">{{Auth::user()->following()->count()}}</a></strong>
                             </div>
                             <div class="col-sm-6">
                                 <div>followers</div>
-                                <strong><a href="/user/followerslist">{{Auth::user()->followers()->count()}}</a></strong>
+                                <strong><a href="/users/followerList">{{Auth::user()->followers()->count()}}</a></strong>
                             </div>        
                         </div>
                     </div>

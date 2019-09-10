@@ -6,20 +6,32 @@ use Illuminate\Http\Request;
 use Auth;
 use Hash;
 use App\User;
+use Storage;
 
 class UserController extends Controller
 {
     public function edit($id)
     {   
+
+        $is_image = false;
+        if (Storage::disk('local')->exists('public/profile_images/' . Auth::id() . '.jpg')) {
+            $is_image = true;
+        }
         $user = Auth::user();
-        return view('settings', compact('user'));
+        return view('settings', compact('user' ,'is_image'));
     }
 
     public function update($id)
     {
+
+        $file = request()->file('image')->getClientOriginalName();
+
+        request()->file('image')->storeAs('public/images', $file);
+
         $user = Auth::user()->update([
             'name' => request()->new_name,
             'email' => request()->new_email,
+            'avatar' => '/storage/images/'.$file
         ]);
         if(request()->password){
             //validation rule

@@ -8,12 +8,32 @@
 <div class="container">
     <div class="row">
         <div class="col-4 m-auto">
-            <form method="post" action="/user/update/{{Auth::user()->id}}">
+            <form method="post" action="/user/update/{{Auth::user()->id}}" enctype="multipart/form-data">
             @csrf
             <div class="avatar text-center">
-                <img src="/images/{{ Auth::user()->avatar }}" class="rounded-circle" style="width: 75px;">
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                    </ul>
+                </div>
+                @endif
+                @if (session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+                @endif
+                @if ($is_image)
+                <figure>
+                    <img src="/storage/profile_images/{{ Auth::id() }}.jpg" class="rounded-circle" style="width: 75px;">
+                    <figcaption>現在のプロフィール画像</figcaption>
+                </figure>
+                @endif
+                <img src="{{ Auth::user()->avatar }}" class="rounded-circle" style="width: 75px;">
                 <div class="py-2">
-                    <a href="user/edit/{{Auth::user()->id}}" class="btn btn-primary">Change Image</a>
+                    <input type="file" name="image">
                 </div>
             </div>
             <div class="form-group" >
@@ -37,7 +57,7 @@
                 <input type="password" class="form-control" id="confirm_password" name="password_confirmation">
             </div>
             <div class="text-center">
-                <button type="submit" class="btn btn-primary">Send</button>
+                <input type="submit" class="btn btn-primary">
             </div>
             </form>
         </div>

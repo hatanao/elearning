@@ -5,7 +5,17 @@
 @endsection
 
 @section('content')
+
+
 <div class="container">
+    <ul class="nav nav-tabs mb-5">
+        <li class="nav-item">
+            <a class="nav-link" href="#">All Lessons</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">My Lessons</a>
+        </li>
+    </ul>
     <div class="row">
         <div class="col-sm-12 col-md-6 col-lg-4">
             <div class="card" style="width: 18rem;">
@@ -29,7 +39,7 @@
         </div>
         <div class="col-sm-12 col-md-6 col-lg-4">
             <div class="card" style="width: 18rem;">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/7/76/Steve_Jobs_with_MacBook_Air_2.jpg" class="card-img-top" alt="steve jobs">
+                <img src={{asset('images/Martin_Luther_KingJr.jpeg')}} class="card-img-top" alt="steve jobs">
                 <div class="card-body">
                     <h5 class="card-title">Entrepreneur</h5>
                     <p class="card-text">Answer the questions related to the entrepreneur or companys.</p>

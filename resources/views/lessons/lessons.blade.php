@@ -21,8 +21,9 @@
                 <div class="card text-center">
                     <img src="{{$lesson->user->avatar}}" class="card-img-top">
                     <div class="card-body">
-                        <h2 class="card-title">{{$lesson->title}}</h2>
-                        <a href="/user/answerQuiz/{{$lesson->id}}" class="btn btn-block btn-primary">Start</a>
+                        <h2 class="">{{$lesson->title}}</h2>
+                        <p class="">{{$lesson->quizzes()->count()}} Quiz</p>
+                      <a href="/user/answerQuiz/{{$lesson->id}}" class="btn btn-block btn-primary">Start</a>
                     </div>
                 </div>
             </div>

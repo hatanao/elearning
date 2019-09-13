@@ -26,7 +26,8 @@
             <div class="card" style="; background: rgba(29, 29, 29, 0.8);">
                 <img src="{{$lesson->user->avatar}}" class="card-img-top" alt="steve jobs">
                 <div class="card-body text-center">
-                    <h2 class="card-title"><a href="/user/viewQuizzes/{{$lesson->id}}">{{$lesson->title}}</a></h2>
+                    <h2 class=""><a href="/user/viewQuizzes/{{$lesson->id}}">{{$lesson->title}}</a></h2>
+                    <p class="">{{$lesson->quizzes()->count()}} Quiz</p>
                         <div>
                             <a href="/user/answerQuiz/{{$lesson->id}}" class="btn btn-primary btn-block mb-3 {{$lesson->quizzes->count() ? '' : 'disabled'}}">
                                 Start

@@ -33,15 +33,16 @@ class HomeController extends Controller
         }
 
         $completeLessons = Auth::user()->lessonTakens->where('is_complete', 1)->unique('lesson_id');
-        foreach($completeLessons as $lesson){
+        foreach($completeLessons as $completeLesson){
 
-            $lesson->times = Auth::user()->lessonTakens
+            $completeLesson->times = Auth::user()->lessonTakens
                                          ->where('is_complete', 1)
-                                         ->where('lesson_id' , $lesson->lesson_id)
+                                         ->where('lesson_id' , $completeLesson->lesson_id)
                                          ->count();
         }
 
         $activities = Auth::user()->activities()->orderBy('created_at','desc')->get();
+
 
 
         return view('home', compact('completeLessons','activities'));

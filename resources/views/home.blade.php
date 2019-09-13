@@ -65,8 +65,9 @@
                             </span>
                             <img src="{{$completeLesson->lesson->user->avatar}}" class="card-img-top">
                             <div class="card-body">
-                                <h2 class="card-title">{{$completeLesson->lesson->title}}</h2>
-                                <a href="/user/answerQuiz/" class="btn btn-block btn-primary">Start</a>
+                                <h2 class="">{{$completeLesson->lesson->title}}</h2>
+                                <p class="">{{$completeLesson->lesson->quizzes()->count()}} Quiz</p>
+                                <a href="/user/answerQuiz/{{$completeLesson->lesson_id}}" class="btn btn-block btn-primary">Review</a>
                             </div>
                         </div>
                     </div>

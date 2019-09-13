@@ -5,21 +5,21 @@
 @endsection -->
 
 @section('content')
-<div class="container-fluid">
+<div class="container">
   <div class="">
     <div class="row" style="justify-content: flex-end;">
-      <div class="float-right pr-5 mb-3">
+      <div class="float-right mb-3">
           <a href="/user/addQuiz/{{$lesson_id}}" class="btn btn-primary" style>add Quiz</a>
       </div>
     </div>
     <div class="row text-center">
       @foreach($quizzes as $index => $quiz)
-        <div class="col-md-6 col-lg-4">
-          <div class="card mb-4">
+        <div class="col-md-6 col-lg-4 d-flex">
+          <div class="card mb-4 flex-fill">
             <div class="card-body row">
               @if($quiz->image)
                 <h5 class="card-title col-8">Q{{$index+1}}: {{$quiz->question}}</h5>
-                <img src="{{$quiz->image}}" class="col-4" alt="" style="width: 10vw; height: 10vw;">
+                <img src="{{$quiz->image}}" class="col-4" alt="" style="width: 10vh; height: 10vh;">
               @else
                 <h5 class="card-title">Q{{$index+1}}: {{$quiz->question}}</h5>
               @endif

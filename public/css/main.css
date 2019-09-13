@@ -1,7 +1,31 @@
+html, body{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+    
+.bg-brand{
+    background: #989898;
+    background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.15) 0%, rgba(0, 0, 0, 0.15) 100%), -webkit-radial-gradient(at top center, rgba(255, 255, 255, 0.4) 0%, rgba(0, 0, 0, 0.4) 120%);
+    background: linear-gradient(to bottom, rgba(70, 68, 68, 0.22) 0%, rgba(43, 38, 38, 0.15) 100%), radial-gradient(at top center, rgba(62, 60, 60, 0.4) 0%, rgb(32, 32, 33) 120%);
+    background-blend-mode: multiply,multiply; 
+    background-size:cover;
+    min-height: -webkit-fill-available;
+}
+
+
 h1, h2{
     color: snow;
 }
 
+.heading-title{
+    color:#39cc4e;
+}
+
+a{
+    color:snow;
+    text-decoration-line: none;
+}
 
 .dropdown-menu-right{
     background-color: #181919;
@@ -38,24 +62,20 @@ h1, h2{
     border-radius: 50%;
 }
 
-.silverStone {
-    background: #989898;
-    background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.15) 0%, rgba(0, 0, 0, 0.15) 100%), -webkit-radial-gradient(at top center, rgba(255, 255, 255, 0.4) 0%, rgba(0, 0, 0, 0.4) 120%);
-    background: linear-gradient(to bottom, rgba(70, 68, 68, 0.22) 0%, rgba(43, 38, 38, 0.15) 100%), radial-gradient(at top center, rgba(62, 60, 60, 0.4) 0%, rgb(32, 32, 33) 120%);
-    background-blend-mode: multiply,multiply; }
- 
+.complete-lesson{
+    background: white;
+    width: fit-content;
+    border-radius: 999px;
+    color: #020101;
+    padding: 4px;
+}
+
+
 .card{
     background: rgba(29, 29, 29, 0.8);
     box-shadow: 0 0 125px rgba(0, 0, 0, 0.25);
     padding: 1em;
     color: #fff;
-}
-
-.brand-wrapper{
-    height: 100vh;
-    overflow-y: scroll;
-    margin: -1.5rem 0;
-    padding: 1.5rem 0;
 }
 
 .list-group-item{
@@ -75,9 +95,7 @@ h1, h2{
 }
 
 @media screen and (max-width: 600px) {
-    /* .topnav a:not(:first-child), .dropdown .dropbtn {
-      display: none;
-    } */
+
     .nav-link .avatar {
       display: none;
     }
@@ -98,4 +116,16 @@ h1, h2{
       text-align: left;
     }
 }
+
+/* @media (min-width: 768px){
+.user-profile {
+    height: 100vh;
+    }
+} */
+@media (max-width: 576px){
+    .btn {
+        padding:2px 4px;
+        font-size:80%;
+        }
+    }
 

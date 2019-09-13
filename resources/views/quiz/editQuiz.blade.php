@@ -7,13 +7,13 @@
 @section('content')
 <form action="/user/updateQuiz/{{$quiz->id}}" method="POST" enctype="multipart/form-data">
     @csrf
-    <div class="container-fluid px-5">
+    <div class="container-fluid">
         <div class="row">
             <div class="question col-md-6 form-group">
-                <h4>Question</h4>
+                <h2 class="pb-2">Question</h2 >
                 <input type="text" required class="form-control mb-3" name="question" placeholder="" value="{{$quiz->question}}">
                 @if($quiz->image)
-                    <img src={{$quiz->image}} style="width:15vh; height:15vh;">
+                    <img src={{$quiz->image}} class="m-3" style="width: 90%;height: auto;">
                 @endif
                 <div class="py-2">
                     <input type="file" name="image" class="col-lg-8">
@@ -21,7 +21,7 @@
             </div>
 
             <div class="choices col-md-6 form-group">
-                <h4>Choices</h4>
+                <h2 class="pb-2">Choices</h2 >
 
                 @foreach($quiz->choices as $key => $value)
                 <div class="form-check">

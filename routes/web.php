@@ -20,6 +20,9 @@ Auth::routes();
 Route::group(['middleware'=>'auth'], function () {
     Route::get('/home', 'HomeController@index')->name('home');
 
+    Route::get('/test', 'ActivityLogController@showActivityLog');
+
+
     Route::group(['prefix'=>'user'], function () {
         Route::get('edit/{id}', 'UserController@edit');
         Route::post('update/{id}', 'UserController@update');
@@ -44,6 +47,7 @@ Route::group(['middleware'=>'auth'], function () {
         Route::get('deleteQuiz/{quizId}', 'QuizController@deleteQuiz');
         Route::get('answerQuiz/{lessonId}', 'LessonController@answerQuiz');
         Route::post('{lessonId}/quiz/{quizId}/answer/submit', 'QuizController@submitQuiz');
+        Route::post('/home', 'HomeController@showActivityLog');
 
         Route::get('showResult/{lessonTakenId}', 'LessonController@showResult');
     });
@@ -51,11 +55,14 @@ Route::group(['middleware'=>'auth'], function () {
 });
     Route::group(['prefix'=>'admin'], function () {
 
-        // if i
+        //
         Route::group(['middleware' => 'admin'], function(){
             Route::get('home', 'AdminController@index')->name('adminhome');
             Route::get('users', 'AdminController@showUsers');
             Route::get('delete/{lessonId}', 'AdminController@deleteUser');
+            Route::get('create/admin', 'AdminController@createAdmin')->middleware('master.admin');
+            Route::post('store/admin', 'AdminController@storeAdmin');
+            Route::get('/admin/delete/userId', 'AdminController@deleteUser');
         });
 
         //if you're logout

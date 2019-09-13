@@ -17,4 +17,7 @@ class LessonTaken extends Model
     public function userAnswers(){
         return $this->hasMany('App\UserAnswer');
     }
+    public function activities(){
+        return $this->morphMany('App\ActivityLog', 'activityable');
+    }
 }

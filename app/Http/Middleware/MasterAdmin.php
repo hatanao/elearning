@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class Admin
+class MasterAdmin
 {
     /**
      * Handle an incoming request.
@@ -15,12 +15,10 @@ class Admin
      */
     public function handle($request, Closure $next)
     {
-        // if login user is not the admin go back to home
-        
-        if(auth()->user()->is_admin){
+        if(auth()->user()->is_admin == 2){
             return $next($request);
         }else{
-            return redirect('/home');
+            return redirect()->back();
         }
     }
 }

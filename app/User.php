@@ -60,4 +60,8 @@ class User extends Authenticatable
     public function lessonTakens(){
         return $this->hasMany('App\LessonTaken');
     }
+
+    public function activities(){
+        return $this->hasMany('App\ActivityLog');
+    }
 }

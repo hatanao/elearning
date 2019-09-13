@@ -12,7 +12,7 @@
                 method="POST">
                 @csrf
                 <div class="form-group">
-                    <label for="title" class="col-sm-2 col-form-label"><h5>Title</h5></label>
+                    <label for="title" class="col-sm-2 col-form-label"><h4 class="font-weight-bold" style="letter-spacing: 1px;">Title</h4></label>
                         <input type="text" 
                                required 
                                class="form-control" 
@@ -21,7 +21,7 @@
                                placeholder=""
                                value={{isset($lesson) ? $lesson->title : ""}}>
                 </div>
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <label for="description" class="col-sm-2 col-form-label"><h5>Description</h5></label>
                         <input 
                             type="text" 
@@ -31,7 +31,7 @@
                             name="description" 
                             placeholder=""
                             value={{isset($lesson) ? $lesson->description : ""}}>
-                </div>
+                </div> -->
                 <div class="form-group text-right pt-2">
                     <a href="/user/myLessons" class="btn mr-2 btn-secondary">Back</a>
                     <button type="submit" class="btn btn-primary">{{isset($lesson) ? 'Update' : 'Create'}}</button>

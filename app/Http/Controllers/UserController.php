@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Auth;
 use Hash;
 use App\User;
+use App\Follower;
+use App\ActivityLog;
 use Storage;
 use Validator;
 
@@ -28,8 +30,7 @@ class UserController extends Controller
         if(request()->file('image')){
 
             request()->validate([
-                'image' => 'mimes:jpeg,bmp,png',
-                'image' => 'max:2048'
+                'image' => 'image|mimes:jpeg,png,jpg|max:2048'
             ]);
 
             $file = request()->file('image')->getClientOriginalName(); 
@@ -55,7 +56,7 @@ class UserController extends Controller
             
         }
 
-        return view('home')->with('success' , 'Success! Your information has been changed!'); 
+        return redirect('/home'); 
     }
 
     public function showFollowing(){
@@ -70,16 +71,26 @@ class UserController extends Controller
     public function showUserProfile($id)
     {
         $user = User::find($id); 
-        return view('users.userProfile', compact('user'));
+        $activities = $user->activities()->orderBy('created_at','desc')->get();
+
+        return view('users.userProfile', compact('user', 'activities'));
     }
 
     public function follow($id){
         Auth::user()->following()->attach($id);
+
+        $follower = Follower::where('user_id' , $id)
+                              ->where('follower_id' , auth()->user()->id)
+                              ->first();
+
+
+        $follower->activities()->create(['user_id' =>  auth()->user()->id,
+                                            'message' => $follower->follower->name.' followed '.$follower->user->name]);
         
         return redirect()->back();
     }
     public function unfollow($id){
-        Auth::user()->following()->detach($id);
+        $unfollow = Auth::user()->following()->detach($id);
         
         return redirect()->back();
     }

@@ -30,6 +30,7 @@
                         @endforeach
                     </div>
                 </div>
+                @isset($activities)
                     <h2 class="heading-title pl-2 pt-4 pb-2">User Activities</h2>
                     <div class="list-group ">
                         @foreach($activities as $activity)
@@ -42,6 +43,7 @@
                             </div>
                         @endforeach
                     </div>
+                @endisset
 
                 <div class="d-flex justify-content-center">
                     {{ $users->links() }}

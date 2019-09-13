@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="brand-wrapper">
     <div class="container">
 
     @foreach($results as $index => $result)
@@ -56,5 +55,4 @@
             <a href="/home" class="btn btn-primary">Go back to Dashoboard</a>
         </div>
     </div>
-</div>
 @endsection('content')

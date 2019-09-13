@@ -9,7 +9,9 @@ class ActivityLog extends Model
     protected $guarded = [];
 
 
-    public function follower(){
-        return $this->morphTo('App\Follwer');
+    public function activityable(){
+        return $this->morphTo();
     }
+
+
 }

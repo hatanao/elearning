@@ -22,10 +22,11 @@
 
 </head>
 <body>
-    <div id="app">
+    <div id="app" class="bg-brand">
         <nav class="navbar navbar-expand-md navbar-dark navbar-laravel">
             <div class="container-fluid">
                 <a class="navbar-brand" href="{{ url('/home') }}"><img src={{asset('images/logo.png')}} alt="" style="width: 35px;">
+                
                     <!-- {{ config('app.name', 'Home') }} -->
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -51,12 +52,14 @@
                         <li class="nav-item">
                             <a class="nav-link" href="/user/lessons">Lessons</a>
                         </li>
+                        @if(!Auth::user()->is_admin)
                         <li class="nav-item">
                             <a class="nav-link" href="/user">Users</a>
                         </li>
+                        @endif
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            <img src="{{ Auth::user()->avatar }}" class="rounded-circle avatar" style="width: 2vw;height: 2vw;">
+                            <img src="{{ Auth::user()->avatar }}" class="rounded-circle avatar" style="width: 5vh;height: 5vh;">
                             <span class="caret">{{ Auth::user()->name }}</span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -79,7 +82,7 @@
             </div>
         </nav>
 
-        <main class="py-4 silverStone" style="min-height: -webkit-fill-available;">
+        <main class="p-4">
             @yield('content')
     
         </main>

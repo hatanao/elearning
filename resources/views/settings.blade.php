@@ -20,7 +20,7 @@
                     </ul>
                 </div>
             @endif
-                <img src="{{ Auth::user()->avatar }}" class="rounded-circle" style="width: 10vw; height: 10vw;">
+                <img src="{{ Auth::user()->avatar }}" class="rounded-circle" style="width: 12vh; height: 12vh;">
                 <div class="py-4">
                     <input type="file" name="image" style="width: 197px;">
                 </div>

@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-<div class="" style="margin-top:-24px; margin-bottom:-24px;">
+<div class="">
 
 
     @if (isset($success))
@@ -26,7 +26,11 @@
 
                         <div class="py-3">
                             <h2>{{ Auth::user()->name }}</h2>
+                            @if(Auth::user()->is_admin == 2)
                             <a href="/admin/create/admin" class="btn btn-primary">Create Admin</a>
+                            @else
+                            <a href="/user/edit/{{Auth::user()->id}}" class="btn btn-primary">Edit profile</a>
+                            @endif
                         </div>
 
                         <div class="dropdown-divider my-2"></div>
@@ -47,7 +51,7 @@
         </div>
         <div class="col-md-9 col-lg-9 mb-4">
             <div class="row">
-                <div class="col-sm-12 col-md-6 col-lg-4 m-2">
+                <div class="col-md-11 col-lg-11 m-2">
                 <div class="panel user-list">
                 <div class="panel-heading p-4">
                     <h2>All Members</h2>
@@ -64,12 +68,14 @@
                                 <a class="pl-3" href="/user/profile/{{$user->id}}">{{$user->name}}</a>
                                 
                                 @if(Auth::user()->is_following($user->id))
-                                <div class="ml-auto">
+                                <div class="ml-auto" style="text-align: -webkit-right;">
                                     <a href="/user/unfollow/{{$user->id}}" class="btn btn-danger"> Unfollow </a>
+                                    <a href="/admin/delete/{{$user->id}}" class="btn btn-danger"> Delete </a>
                                 </div>
                                 @else
-                                <div class="ml-auto">
+                                <div class="ml-auto" style="text-align: -webkit-right;">
                                     <a href="/user/follow/{{$user->id}}" class="btn btn-primary"> Follow</a>
+                                    <a href="/admin/delete/{{$user->id}}" class="btn btn-danger"> Delete </a>
                                 </div>
                                 @endif
                             </form>

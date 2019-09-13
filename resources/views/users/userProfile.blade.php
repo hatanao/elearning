@@ -1,20 +1,14 @@
 @extends('layouts.app')
 
-@section('css')
-<link href="{{ asset('css/home.css') }}" rel="stylesheet">
-@endsection
-
 @section('content')
-<div class="container">
+<div class="container-fluid">
     <div class="row">
-        <div class="col-sm-4">
-            <div class="panel user-profile card p-3">
+        <div class="col-md-3 col-lg-3">
+            <div class="panel card p-3 mb-4">
                 <div class="panel-body">
                     <div class="text-center">
                         <div class="avatar">
-                            <div class="default">
-                                <img src="{{ Auth::user()->avatar }}" class="rounded-circle" style="width: 15vw; height: 15vw;">
-                            </div>
+                            <img src="{{ Auth::user()->avatar }}" class="rounded-circle" style="width: 15vh;height: 15vh;">
                         </div>
 
                         <div class="py-3">                        
@@ -45,13 +39,17 @@
                 </div>
             </div>
         </div>
-
-        <div class="col-sm-8">
-            <div class="activity-feed">
-                <div class="well bg-white">
-                    <div class="page-header pt-3 pl-3 pr-3 text-center"><h2>Activity Log</h2></div>
-                    <div class="dropdown-divider mx-5"></div>
+        <div class="col-md-9">
+            <h2 class="heading-title p-3">User Activities</h2>
+            <div class="list-group">
+                @foreach($activities as $activity)
+                <div class="list-group-item" style="background: rgba(29, 29, 29, 0.8); color:white;">
+                    <div class="d-flex align-items-center">
+                        <h4 class="pl-3">{{$activity->message}}</h4> 
+                        <small class="text-muted pl-2">{{$activity->created_at->diffForHumans()}}</small>
+                    </div>
                 </div>
+                @endforeach
             </div>
         </div>
     </div>

@@ -51,6 +51,8 @@ class LessonController extends Controller
                                      
         // if the user click the lesson start which doesn't have quiz in it, it'll return to the original page                                         
         if($quiz == ''){
+
+            
             
             return redirect()->back();
         }

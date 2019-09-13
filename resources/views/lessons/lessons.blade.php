@@ -17,16 +17,16 @@
     
     <div class="row">
         @foreach($sortedLessons as $lesson)
-        <div class="col-sm-12 col-md-6 col-lg-4  mb-4">
-            <div class="card text-center">
-                <img src="{{$lesson->user->avatar}}" class="card-img-top">
-                <div class="card-body">
-                    <h2 class="card-title">{{$lesson->title}}</h2>
-                    <a href="/user/answerQuiz/{{$lesson->id}}" class="btn btn-block btn-primary">Start</a>
+            <div class="col-sm-12 col-md-6 col-lg-4  mb-4">
+                <div class="card text-center">
+                    <img src="{{$lesson->user->avatar}}" class="card-img-top">
+                    <div class="card-body">
+                        <h2 class="card-title">{{$lesson->title}}</h2>
+                        <a href="/user/answerQuiz/{{$lesson->id}}" class="btn btn-block btn-primary">Start</a>
+                    </div>
                 </div>
             </div>
-        </div>
-    @endforeach
+        @endforeach
     </div>
 </div>
 @endsection('content')

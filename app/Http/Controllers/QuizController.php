@@ -104,11 +104,15 @@ class QuizController extends Controller
 
     public function submitQuiz($lessonId, $quizId){
 
-        
         //insert answer and lesson_taken_id to user_answer table
         $userAnswer = Quiz::find($quizId)->userAnswers()
-        ->create(['choice_id' => request()->answer,
-        'lesson_taken_id' => request()->lesson_taken_id]);
+        ->updateOrCreate([
+                'lesson_taken_id' => request()->lesson_taken_id
+                ],
+                [
+                    'choice_id' => request()->answer
+                ]
+        );
         
         $lesson = Lesson::find($lessonId); //lesson which user is taking
         
@@ -116,6 +120,7 @@ class QuizController extends Controller
         $next_id = $quizzes->min('id'); // set the lowest quizId from above quizzes 
         
         $lessonTaken = LessonTaken::find(request()->lesson_taken_id);
+
         $quiz = Quiz::find($next_id); // set the $next_id to $quiz 
 
         $quiz_number = $lesson->quizzes->search($quiz) + 1;
@@ -127,6 +132,24 @@ class QuizController extends Controller
             $lessonTaken->update([
                 "is_complete" => 1
             ]);
+
+            
+            if($lessonTaken){
+                $correct = 0;
+
+                foreach($lessonTaken->userAnswers as $answer){
+                    
+                    if($answer->choice_id == $answer->quiz->answer_id){
+                        $correct++;
+                    }
+                }
+            }
+            
+          $lessonTaken->activities()->create([
+                'user_id' =>  $lessonTaken->user_id,
+                'message' => auth()->user()->name.' answered '.$correct.'/'.$lessonTaken->userAnswers()->count().' questions correctly '.'of lesson ('.$lessonTaken->lesson->title. ')']);    
+        
+
             return redirect('/user/showResult/'.request()->lesson_taken_id);
         }
 
@@ -135,7 +158,4 @@ class QuizController extends Controller
         
     }
 
-    public function showAllActivityLog(){
-        $lessonTaken = LessonTaken::find(request()->lesson_taken_id);
-    }
 }

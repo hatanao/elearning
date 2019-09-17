@@ -28,7 +28,9 @@
                             </div>
                             @endif
                         @endforeach
-                        
+                        <div class="d-flex justify-content-center pt-4">
+                            {{ $users->appends(['activities', $activities->currentPage()])->links() }}
+                        </div>
                     </div>
                 </div>
                 @isset($activities)

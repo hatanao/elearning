@@ -10,6 +10,8 @@ use App\Follower;
 use App\ActivityLog;
 use Storage;
 use Validator;
+use Session;
+
 
 class UserController extends Controller
 {
@@ -26,7 +28,7 @@ class UserController extends Controller
             'new_email' => ['string', 'max:255', 'unique:users,email,'.auth()->user()->id,'email:rfc,dns'],
         ]);
         
-        $user = Auth::user()->update([
+        $user = Auth::user()->fill([
             'name' => request()->new_name,
             'email' => request()->new_email,
         ]);
@@ -58,11 +60,15 @@ class UserController extends Controller
             }       
         }
 
-        if($user->isDirty()){
+        
+        if(Auth::user()->isDirty()){
+            Session::flash('flash_message', 'Succesfully updated!');
 
-            return redirect('/home')->with('flash_message', 'Succesfully updated!');
-            
+            $user->save();
         }
+            // return redirect('/home')->with('flash_message', 'Succesfully updated!');
+            
+        
             return redirect('/home'); 
     }
 

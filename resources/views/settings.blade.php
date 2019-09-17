@@ -1,9 +1,5 @@
 @extends('layouts.app')
 
-@section('css')
-<link href="{{ asset('css/home.css') }}" rel="stylesheet">
-@endsection
-
 @section('content')
 <div class="container">
     <div class="row">
@@ -30,7 +26,7 @@
                 <input type="name" class="form form-control" id="name" value="{{ $user->name }}" name="new_name">
             </div>
             <div class="form-group">
-                <label for="email">Email address</label>
+                <label for="email">Email Address</label>
                 <input type="email" class="form form-control" id="email" value="{{ $user->email }}" name="new_email">
             </div>
             <div class="form-group">

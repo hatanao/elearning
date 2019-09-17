@@ -21,11 +21,15 @@ class UserController extends Controller
 
     public function update($id){
 
+        request()->validate([
+            'new_name' => ['string', 'max:255'],
+            'new_email' => ['string', 'max:255', 'unique:users,email,'.auth()->user()->id,'email:rfc,dns'],
+        ]);
+        
         $user = Auth::user()->update([
             'name' => request()->new_name,
             'email' => request()->new_email,
         ]);
-
 
         if(request()->file('image')){
 
@@ -41,22 +45,25 @@ class UserController extends Controller
             $user->avatar = '/storage/images/'.$file;
             $user->save();
         }
+
         if(request()->password){
             //validation rule
             request()->validate([
-                'password' => ['required', 'min:6', 'confirmed']
+                'password' => ['required', 'string', 'min:8', 'confirmed','max:25']
             ]);
             if(Hash::check(request()->current_password, Auth::user()->password)){
                 Auth::user()->update([
                     'password' => Hash::make(request()->password)
                 ]);
-            } else {
-                return "incorrect password";
-            }
-            
+            }       
         }
 
-        return redirect('/home'); 
+        if($user->isDirty()){
+
+            return redirect('/home')->with('flash_message', 'Succesfully updated!');
+            
+        }
+            return redirect('/home'); 
     }
 
     public function showFollowing(){

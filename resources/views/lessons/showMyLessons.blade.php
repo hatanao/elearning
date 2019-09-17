@@ -17,7 +17,7 @@
     </ul>
     <div class="row py-4" style="justify-content: flex-end;">
     <div class="text-right pr-4">
-        <a href="/user/addLesson/{{Auth::user()->id}}" class="btn btn-primary" style>add lesson</a>
+        <a href="/user/addLesson/{{Auth::user()->id}}" class="btn btn-primary" style>Add Lesson</a>
     </div>
     </div>
     <div class="row">
@@ -27,6 +27,7 @@
                 <img src="{{$lesson->user->avatar}}" class="card-img-top" alt="steve jobs">
                 <div class="card-body text-center">
                     <h2 class=""><a href="/user/viewQuizzes/{{$lesson->id}}">{{$lesson->title}}</a></h2>
+                    <p class="">{{$lesson->description}}</p>
                     <p class="">{{$lesson->quizzes()->count()}} Quiz</p>
                         <div>
                             <a href="/user/answerQuiz/{{$lesson->id}}" class="btn btn-primary btn-block mb-3 {{$lesson->quizzes->count() ? '' : 'disabled'}}">

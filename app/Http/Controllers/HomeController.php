@@ -54,10 +54,10 @@ class HomeController extends Controller
     {
         $users = User::where("id" , "!=" , Auth::user()->id)
                       ->where('is_admin' , '==' , 0)
-                      ->paginate(5);
+                      ->paginate(4, ['*'], 'showUser'); 
 
 
-        $activities = ActivityLog::where('user_id', '!=', auth()->user()->id)->orderBy('created_at','desc')->get();
+        $activities = ActivityLog::where('user_id', '!=', auth()->user()->id)->orderBy('created_at','desc')->paginate(5, ['*'], 'showActivity');
 
 
         return view('users.usersList', compact('users', 'activities'));

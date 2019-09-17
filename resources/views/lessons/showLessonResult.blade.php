@@ -12,7 +12,7 @@
                     {{$result->quiz->question}}
                 </h5>
                 @if($result->quiz->image)
-                    <img src="{{$result->quiz->image}}" class="col-4" style="width: 10vw; height: 10vw;">
+                    <img src="{{$result->quiz->image}}" class="col-4" style="width: 10vh; height: 10vh;">
                 @endif
             </div>
             </div>

@@ -9,25 +9,26 @@
                 <div class="panel-body">
                     <div class="list-group">
                        @foreach($users as $user)
-                       @if($user->id != Auth::user()->id)
-                        <div class="list-group-item mb-1" style="background: rgba(29, 29, 29, 0.8);"> 
-                            <form class=" d-flex align-items-center" method="post" action="#">
-                                <img src="{{$user->avatar}}" class="rounded-circle" style="width: 7vh;height: 7vh;">
-                                <a class="pl-3" href="/user/profile/{{$user->id}}">{{$user->name}}</a>
-                                
-                                @if(Auth::user()->is_following($user->id))
-                                <div class="ml-auto">
-                                    <a href="/user/unfollow/{{$user->id}}" class="btn btn-danger"> Unfollow </a>
-                                </div>
-                                @else
-                                <div class="ml-auto">
-                                    <a href="/user/follow/{{$user->id}}" class="btn btn-primary"> Follow</a>
-                                </div>
-                                @endif
-                            </form>
-                        </div>
-                        @endif
+                        @if($user->id != Auth::user()->id)
+                            <div class="list-group-item mb-1" style="background: rgba(29, 29, 29, 0.8);"> 
+                                <form class=" d-flex align-items-center" method="post" action="#">
+                                    <img src="{{$user->avatar}}" class="rounded-circle" style="width: 7vh;height: 7vh;">
+                                    <a class="pl-3" href="/user/profile/{{$user->id}}">{{$user->name}}</a>
+                                    
+                                    @if(Auth::user()->is_following($user->id))
+                                    <div class="ml-auto">
+                                        <a href="/user/unfollow/{{$user->id}}" class="btn btn-danger"> Unfollow </a>
+                                    </div>
+                                    @else
+                                    <div class="ml-auto">
+                                        <a href="/user/follow/{{$user->id}}" class="btn btn-primary"> Follow</a>
+                                    </div>
+                                    @endif
+                                </form>
+                            </div>
+                            @endif
                         @endforeach
+                        
                     </div>
                 </div>
                 @isset($activities)
@@ -42,12 +43,12 @@
                                 </div>
                             </div>
                         @endforeach
+                        <div class="d-flex justify-content-center pt-4">
+                            {{ $activities->appends(['users',  $users->currentPage()])->links() }}
+                        </div>
                     </div>
                 @endisset
 
-                <div class="d-flex justify-content-center">
-                    {{ $users->links() }}
-                </div>
 
             </div>
         </div>

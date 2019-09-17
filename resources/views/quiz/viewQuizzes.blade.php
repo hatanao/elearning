@@ -9,7 +9,7 @@
   <div class="">
     <div class="row" style="justify-content: flex-end;">
       <div class="float-right mb-3">
-          <a href="/user/addQuiz/{{$lesson_id}}" class="btn btn-primary" style>add Quiz</a>
+          <a href="/user/addQuiz/{{$lesson_id}}" class="btn btn-primary" style>Add Quiz</a>
       </div>
     </div>
     <div class="row text-center">
@@ -31,7 +31,7 @@
             </ul>
             <div class="card-body">
               <a href="/user/editQuiz/{{$quiz->id}}" class="btn btn-secondary btn-sm card-link">Edit</a>      
-              <a href="/user/deleteQuiz/{{$quiz->id}}" class="btn btn-danger btn-sm card-link">Delete</a>
+              <a href="/user/deleteQuiz/{{$quiz->id}}" onclick="return confirm('Are you sure to delete the quiz?')" class="btn btn-danger btn-sm card-link">Delete</a>
             </div>
           </div>
         </div>

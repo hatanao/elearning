@@ -8,7 +8,7 @@
                 <div class="panel-body">
                     <div class="text-center">
                         <div class="avatar">
-                            <img src="{{ Auth::user()->avatar }}" class="rounded-circle" style="width: 15vh;height: 15vh;">
+                            <img src="{{ Auth::user()->avatar }}" class="rounded-circle" style="width: 6rem;height: 6rem;">
                         </div>
 
                         <div class="py-3">                        

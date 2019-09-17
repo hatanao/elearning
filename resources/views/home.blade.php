@@ -1,14 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<!-- 
-    @if (isset($success))
-        <div class="alert alert-success">
-            <ul>
-                <li>{{$success}}</li>
-            </ul>
-        </div>
-    @endif -->
+
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-3 col-lg-3">
@@ -16,7 +9,7 @@
                 <div class="panel-body">
                     <div class="text-center">
                         <div class="avatar">
-                            <img src="{{ Auth::user()->avatar }}" class="rounded-circle" style="width: 15vh;height: 15vh;">
+                            <img src="{{ Auth::user()->avatar }}" class="rounded-circle" style="width: 6rem;height: 6rem;">
                         </div>
 
                         <div class="py-3">
@@ -55,7 +48,7 @@
             <h2 class="pt-5 pb-3 pl-3 heading-title">Completed Lessons</h2>
             <div class="row">
                 @foreach($completeLessons as $completeLesson)
-                    <div class="col-sm-12 col-md-4 col-lg-3">
+                    <div class="col-sm-12 col-md-6 col-lg-4">
                         <div class="card text-center mb-4">
                             
                             <span class="text-left complete-lesson">
@@ -66,6 +59,7 @@
                             <img src="{{$completeLesson->lesson->user->avatar}}" class="card-img-top">
                             <div class="card-body">
                                 <h2 class="">{{$completeLesson->lesson->title}}</h2>
+                                <p class="">{{$completeLesson->lesson->description}}</p>
                                 <p class="">{{$completeLesson->lesson->quizzes()->count()}} Quiz</p>
                                 <a href="/user/answerQuiz/{{$completeLesson->lesson_id}}" class="btn btn-block btn-primary">Review</a>
                             </div>

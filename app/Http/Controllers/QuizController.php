@@ -66,20 +66,21 @@ class QuizController extends Controller
 
     public function updateQuiz($quizId){
 
-        // $quiz = Quiz::find($quizId)->update(['question' => request()->question, 
-        //                                     'answer_id' => request()->answer]);
+        //add validation 
 
-        // foreach(request()->choice as $key => $choice){
-        //     Choice::find($key)->update([
-        //         'choice' => $choice
-        //     ]);
-        // }
+        $quiz = Quiz::find($quizId)->update(['question' => request()->question, 
+                                            'answer_id' => request()->answer]);
+
+        foreach(request()->choice as $key => $choice){
+            Choice::find($key)->update([
+                'choice' => $choice
+            ]);
+        }
 
         if(request()->file('image')){
 
             request()->validate([
-                'image' => 'mimes:jpeg,bmp,png',
-                'image' => 'max:2048'
+                'image' => 'image|mimes:jpeg,png,jpg|max:2048'
             ]);
 
             $file = request()->file('image')->getClientOriginalName(); 

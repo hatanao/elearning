@@ -18,14 +18,21 @@ class ResetPasswordController extends Controller
     |
     */
 
-    use ResetsPasswords;
+    use ResetsPasswords{
+        redirectPath as redirect;
+    }
+    
 
     /**
      * Where to redirect users after resetting their password.
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    // protected $redirectTo = '/home';
+
+    public function redirect(){
+        return redirect('/home')->with('flash_message', 'Password has been successfully changed!');
+    }
 
     /**
      * Create a new controller instance.

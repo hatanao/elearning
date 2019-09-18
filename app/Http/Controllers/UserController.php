@@ -80,11 +80,21 @@ class UserController extends Controller
         $users = Auth::user()->followers()->paginate(10);
         return view('users.usersList', compact('users'));
     }
+    public function showOtherUserFollowing($id){
+        $users = User::find($id)->following()->paginate(10);
+
+        return view('users.otherUserList', compact('users'));
+    }
+
+    public function showOtherUserFollowers($id){
+        $users = User::find($id)->followers()->paginate(10);
+        return view('users.otherUserList', compact('users'));
+    }
 
     public function showUserProfile($id)
     {
         $user = User::find($id); 
-        $activities = $user->activities()->orderBy('created_at','desc')->get();
+        $activities = $user->activities()->orderBy('created_at','desc')->paginate(7);
 
         return view('users.userProfile', compact('user', 'activities'));
     }

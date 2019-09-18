@@ -29,6 +29,8 @@ Route::group(['middleware'=>['auth', 'revalidate']], function () {
         Route::get('/', 'HomeController@showUsers');
         Route::get('followingList', 'UserController@showFollowing');
         Route::get('followerList', 'UserController@showFollowers');
+        Route::get('followingList/{id}', 'UserController@showOtherUserFollowing');
+        Route::get('followerList/{id}', 'UserController@showOtherUserFollowers');
         Route::get('profile/{id}', 'UserController@showUserProfile');
         Route::get('follow/{id}', 'UserController@follow');
         Route::get('unfollow/{id}', 'UserController@unfollow');

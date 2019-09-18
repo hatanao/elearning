@@ -13,7 +13,7 @@ class QuizController extends Controller
 {
     public function viewQuizzes($lessonId){
 
-        $quizzes = Lesson::find($lessonId)->quizzes()->paginate(6);
+        $quizzes = Lesson::find($lessonId)->quizzes()->paginate(10);
 
         return view('quiz.viewQuizzes', ['lesson_id' => $lessonId , 'quizzes' => $quizzes]);
     }
@@ -43,8 +43,7 @@ class QuizController extends Controller
         if(request()->file('image')){
 
             request()->validate([
-                'image' => 'mimes:jpeg,bmp,png',
-                'image' => 'max:2048'
+                'image' => 'image|mimes:jpeg,png,jpg|max:2048'
                 ]);
                 
                 $file = request()->file('image')->getClientOriginalName(); 

@@ -16,9 +16,9 @@
         </li>
     </ul>
     <div class="row py-4" style="justify-content: flex-end;">
-    <div class="text-right pr-4">
-        <a href="/user/addLesson/{{Auth::user()->id}}" class="btn btn-primary" style>Add Lesson</a>
-    </div>
+        <div class="text-right pr-4">
+            <a href="/user/addLesson/{{Auth::user()->id}}" class="btn btn-primary" style>Add Lesson</a>
+        </div>
     </div>
     <div class="row">
         @foreach($lessons as $lesson)
@@ -42,4 +42,8 @@
         </div>
     @endforeach
     </div>
+    <div class="d-flex justify-content-center pt-4">
+        {{ $lessons->links() }}
+    </div>
+</div>
 @endsection('content')

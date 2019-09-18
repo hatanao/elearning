@@ -29,7 +29,11 @@
                             @endif
                         @endforeach
                         <div class="d-flex justify-content-center pt-4">
-                            {{ $users->appends(['activities', $activities->currentPage()])->links() }}
+                            @if(isset($activities))
+                                {{ $users->appends('activities', $activities->currentPage())->links() }}
+                            @else
+                                {{ $users->links() }}
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -46,7 +50,7 @@
                             </div>
                         @endforeach
                         <div class="d-flex justify-content-center pt-4">
-                            {{ $activities->appends(['users',  $users->currentPage()])->links() }}
+                            {{ $activities->appends('users',  $users->currentPage())->links() }}
                         </div>
                     </div>
                 @endisset

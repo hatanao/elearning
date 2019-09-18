@@ -51,6 +51,9 @@
             </ul>
         </div>
         @endforeach
+        <div class="d-flex pt-3 justify-content-end">
+            {{$results->links()}}
+        </div>
         <div class="form-group text-right pt-2">
             <a href="/home" class="btn btn-primary">Go back to Dashoboard</a>
         </div>

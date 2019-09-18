@@ -30,5 +30,8 @@
             </div>
         @endforeach
     </div>
+    <div class="d-flex justify-content-center pt-4">
+        {{ $sortedLessons->links() }}
+    </div>
 </div>
 @endsection('content')

@@ -17,7 +17,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::group(['middleware'=>'auth'], function () {
+Route::group(['middleware'=>['auth', 'revalidate']], function () {
     Route::get('/home', 'HomeController@index')->name('home');
 
     Route::get('/test', 'ActivityLogController@showActivityLog');
@@ -56,7 +56,7 @@ Route::group(['middleware'=>'auth'], function () {
     Route::group(['prefix'=>'admin'], function () {
 
         //
-        Route::group(['middleware' => 'admin'], function(){
+        Route::group(['middleware' => ['admin', 'revalidate']], function(){
             Route::get('home', 'AdminController@index')->name('adminhome');
             Route::get('users', 'AdminController@showUsers');
             Route::get('delete/{lessonId}', 'AdminController@deleteUser');

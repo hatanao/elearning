@@ -13,12 +13,16 @@ body {
     background-size: cover;
     display: block;
     opacity: 0.9;
+    background-position: center;
+
   }
 
   .in-front{
       z-index: 9999;
   }
 
-  .lp-title{
+  .lp-title h1{
     font-family: 'Times New Roman', Times, serif; 
+    width: 80vw;
+
   }

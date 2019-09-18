@@ -1,13 +1,12 @@
 @extends('layouts.app')
 
-<!-- @section('css')
-<link href="{{ asset('css/showLessons.css') }}" rel="stylesheet">
-@endsection -->
-
 @section('content')
 <form action="/user/storeQuiz/{{$lesson_id}}" method="POST" enctype="multipart/form-data">
 @csrf
 <div class="container-fluid px-5">
+    <div class="alert alert-danger" role="alert">
+        Make sure to select the correct answer when you store choices!
+    </div>
     <div class="row">
         <div class="question col-md-6 form-group">
             <h4>Question</h4>
@@ -20,7 +19,7 @@
 
             @foreach(range(0, 3) as $i)
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="answer" value="{{$i}}">
+                <input class="form-check-input" type="radio" name="answer" value="{{$i}}" required>
                 <input type="text" required class="form-control mb-3" name="choice[]" placeholder="">
             </div>
             @endforeach

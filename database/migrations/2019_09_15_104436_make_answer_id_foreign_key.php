@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddCascadeToQuizzesTable extends Migration
+class MakeAnswerIdForeignKey extends Migration
 {
     /**
      * Run the migrations.
@@ -14,10 +14,8 @@ class AddCascadeToQuizzesTable extends Migration
     public function up()
     {
         Schema::table('quizzes', function (Blueprint $table) {
-
-            $table->unsignedInteger('lesson_id')->change();
-            
-            $table->foreign('lesson_id')->references('id')->on('lessons')->onDelete('cascade');
+            $table->unsignedInteger('answer_id')->change();
+            $table->foreign('answer_id')->references('id')->on('choices');
         });
     }
 
@@ -29,7 +27,7 @@ class AddCascadeToQuizzesTable extends Migration
     public function down()
     {
         Schema::table('quizzes', function (Blueprint $table) {
-            $table->dropForeign('lesson_id');
+            $table->dropForeign('answer_id');
         });
     }
 }

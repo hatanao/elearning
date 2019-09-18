@@ -30,8 +30,8 @@
                 <input type="email" class="form form-control" id="email" value="" name="email">
             </div>
             <div class="form-group">
-                <label for="current_password">Current Password</label>
-                <input type="password" class="form form-control" id="current_password" name="password">
+                <label for="password">Password</label>
+                <input type="password" class="form form-control" id="password" name="password">
             </div>
             <div class="text-center py-2">
                 <input type="submit" class="btn btn-primary">

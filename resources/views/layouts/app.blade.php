@@ -11,6 +11,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/main.js') }}" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -82,6 +83,12 @@
             </div>
         </nav>
 
+        <!-- フラッシュメッセージ -->
+        @if (session('flash_message'))
+            <div class="flash_message bg-success text-center py-3 my-0">
+                {{ session('flash_message') }}
+            </div>
+        @endif
         <main class="p-4">
             @yield('content')
     

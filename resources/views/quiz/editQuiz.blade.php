@@ -8,6 +8,9 @@
 <form action="/user/updateQuiz/{{$quiz->id}}" method="POST" enctype="multipart/form-data">
     @csrf
     <div class="container-fluid">
+        <div class="alert alert-danger" role="alert">
+            Make sure to select the correct answer when you store choices!
+        </div>
         <div class="row">
             <div class="question col-md-6 form-group">
                 <h2 class="pb-2">Question</h2 >
@@ -24,10 +27,17 @@
                 <h2 class="pb-2">Choices</h2 >
 
                 @foreach($quiz->choices as $key => $value)
+                @if($quiz->answer_id == $value->id)
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="answer" value="{{$value->id}}" checked>
+                    <input type="text" required class="form-control mb-3" name="choice[{{$value->id}}]" placeholder="" value="{{$value->choice}}">
+                </div>
+                @else
                 <div class="form-check">
                     <input class="form-check-input" type="radio" name="answer" value="{{$value->id}}">
                     <input type="text" required class="form-control mb-3" name="choice[{{$value->id}}]" placeholder="" value="{{$value->choice}}">
                 </div>
+                @endif
                 @endforeach
             </div>
             <div class="form-group col-md-12" style="text-align: end;">

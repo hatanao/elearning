@@ -53,11 +53,12 @@ class HomeController extends Controller
     public function showUsers()
     {
         $users = User::where("id" , "!=" , Auth::user()->id)
-                      ->where('is_admin' , '==' , 0)
-                      ->paginate(4, ['*'], 'showUser'); 
+                      ->paginate(5, ['*'], 'users'); 
 
 
-        $activities = ActivityLog::where('user_id', '!=', auth()->user()->id)->orderBy('created_at','desc')->paginate(5, ['*'], 'showActivity');
+        $activities = ActivityLog::where('user_id', '!=', auth()->user()->id)
+                                    ->orderBy('created_at','desc')
+                                    ->paginate(10, ['*'], 'activities');
 
 
         return view('users.usersList', compact('users', 'activities'));
@@ -65,7 +66,6 @@ class HomeController extends Controller
 
     public function showAllLessons(){
         
-
         $adminlessons = Lesson::has('quizzes' , '>' , 0 )->whereHas('user' , function($query){
              $query->where('is_admin' , '=' , 1);
         })->orderByDesc('created_at')->get();
@@ -74,7 +74,7 @@ class HomeController extends Controller
             $query->where('is_admin' , '=' , 0);
        })->orderByDesc('created_at')->get();
 
-        $sortedLessons =  $adminlessons->merge($userlessons);
+        $sortedLessons =  $adminlessons->merge($userlessons)->pagination(9);
 
         return view('lessons.lessons', compact('sortedLessons'));
     }

@@ -11,10 +11,10 @@ class AdminController extends Controller
 {
 
     public function index(){
-        // except login user and admin 
+        // if login user is admin execute
         if(auth()->user()->is_admin == 1){
-            $users = User::where("id" , "!=" , Auth::user()->id)
-                      ->where('is_admin', '==', 0)->paginate(3);
+            // exclude login user
+            $users = User::where("id" , "!=" , Auth::user()->id)->paginate(3);
         }
         else{
             $users = User::where("id" , "!=" , Auth::user()->id)->paginate(3);

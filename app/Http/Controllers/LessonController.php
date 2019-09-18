@@ -37,7 +37,7 @@ class LessonController extends Controller
     }
     
     public function showMyLessons(){
-        $lessons = Auth::user()->lessons()->orderBy('created_at','desc')->get();
+        $lessons = Auth::user()->lessons()->orderBy('created_at','desc')->paginate(9);
         return view('lessons.showMyLessons', compact('lessons'));
     }
 
@@ -61,7 +61,7 @@ class LessonController extends Controller
         $lessonTaken = LessonTaken::with(['userAnswers'])->find($lessonTakenId); 
         
         
-        $results = $lessonTaken->userAnswers;
+        $results = $lessonTaken->userAnswers->pagination(10);
              
         return view('lessons.showLessonResult' ,compact('results'));
     }

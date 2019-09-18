@@ -9,7 +9,7 @@
                 <div class="panel-body">
                     <div class="text-center">
                         <div class="avatar">
-                            <img src="{{ Auth::user()->avatar }}" class="rounded-circle" style="width: 6rem;height: 6rem;">
+                            <img src="{{ Auth::user()->avatar }}" class="rounded-circle" style="width: 7rem;height: 7rem;">
                         </div>
 
                         <div class="py-3">
@@ -45,6 +45,7 @@
                 </div>
                 @endforeach
             </div>
+            
             <h2 class="pt-5 pb-3 pl-3 heading-title">Completed Lessons</h2>
             <div class="row">
                 @foreach($completeLessons as $completeLesson)
@@ -67,6 +68,7 @@
                     </div>
                 @endforeach
             </div>
+            
         </div>
     </div>
 </div>

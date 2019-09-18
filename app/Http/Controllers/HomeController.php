@@ -33,6 +33,7 @@ class HomeController extends Controller
         }
 
         $completeLessons = Auth::user()->lessonTakens->where('is_complete', 1)->unique('lesson_id');
+
         foreach($completeLessons as $completeLesson){
 
             $completeLesson->times = Auth::user()->lessonTakens
@@ -41,9 +42,7 @@ class HomeController extends Controller
                                          ->count();
         }
 
-        $activities = Auth::user()->activities()->orderBy('created_at','desc')->get();
-
-
+        $activities = Auth::user()->activities()->orderBy('created_at','desc')->paginate(5);
 
         return view('home', compact('completeLessons','activities'));
     }

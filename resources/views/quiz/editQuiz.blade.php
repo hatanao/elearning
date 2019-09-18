@@ -5,7 +5,7 @@
 @endsection -->
 
 @section('content')
-<form action="/user/updateQuiz/{{$quiz->id}}" method="POST" enctype="multipart/form-data">
+<form class="form-prevent-multiple-submits" action="/user/updateQuiz/{{$quiz->id}}" method="POST" enctype="multipart/form-data">
     @csrf
     <div class="container-fluid">
         <div class="alert alert-danger" role="alert">
@@ -41,7 +41,7 @@
                 @endforeach
             </div>
             <div class="form-group col-md-12" style="text-align: end;">
-                <button type="submit" class="btn btn-primary mr-2">Save</button>
+                <button type="submit" class="btn btn-primary mr-2 btn-prevent-multiple-submits">Save</button>
                 <a href="/user/viewQuizzes/{{$quiz->lesson->id}}" class="btn btn-secondary">Back</a>
             </div>
         </div>

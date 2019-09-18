@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6 m-auto">
-            <form method="post" action="/user/update/{{Auth::user()->id}}" enctype="multipart/form-data">
+            <form class="form-prevent-multiple-submits" method="post" action="/user/update/{{Auth::user()->id}}" enctype="multipart/form-data">
             @csrf
             <div class="avatar text-center">
             @if ($errors->any())
@@ -42,7 +42,7 @@
                 <input type="password" class="form form-control" id="confirm_password" name="password_confirmation">
             </div>
             <div class="text-center py-2">
-                <input type="submit" class="btn btn-primary">
+                <input type="submit" class="btn btn-primary btn-prevent-multiple-submits">
             </div>
             </form>
         </div>

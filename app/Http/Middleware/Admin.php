@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Auth;
 
 class Admin
 {
@@ -13,11 +14,11 @@ class Admin
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next)
+    public function handle($request, Closure $next ,  $guard = null)
     {
         // if login user is not the admin go back to home
         
-        if(auth()->user()->is_admin){
+        if(Auth::guard($guard)->check() && auth()->user()->is_admin){
             return $next($request);
         }else{
             return redirect('/home');

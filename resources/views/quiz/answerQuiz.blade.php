@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<form action="/user/{{$lessonId}}/quiz/{{$quiz->id}}/answer/submit" method="POST">
+<form class="form-prevent-multiple-submits" action="/user/{{$lessonId}}/quiz/{{$quiz->id}}/answer/submit" method="POST">
     @csrf
     <input type="hidden" name="lesson_taken_id" value={{$lessonTaken->id}}>
     <div class="container">
@@ -23,7 +23,7 @@
                         </label>
                     @endforeach
                     <div class="form-group text-right mt-3">
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary btn-prevent-multiple-submits">Submit</button>
                     </div>
                 </div>
             </div>

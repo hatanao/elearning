@@ -19,7 +19,7 @@
                                id="title" 
                                name="title" 
                                placeholder=""
-                               value={{isset($lesson) ? $lesson->title : ""}}>
+                               value="{{isset($lesson) ? $lesson->title : ''}}">
                 </div>
                 <div class="form-group">
                     <label for="description" class="col-sm-2 col-form-label"><h4 style="letter-spacing: 0.5px;">Description</h4></label>
@@ -30,7 +30,7 @@
                             id="description" 
                             name="description" 
                             placeholder=""
-                            value={{isset($lesson) ? $lesson->description : ""}}>
+                            value="{{isset($lesson) ? $lesson->description : ''}}">
                 </div>
                 <div class="form-group text-right pt-2">
                     <a href="/user/myLessons" class="btn mr-2 btn-secondary">Back</a>

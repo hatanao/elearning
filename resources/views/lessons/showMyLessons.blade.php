@@ -22,8 +22,8 @@
     </div>
     <div class="row">
         @foreach($lessons as $lesson)
-        <div class="col-sm-12 col-md-6 col-lg-4  mb-4">
-            <div class="card" style="; background: rgba(29, 29, 29, 0.8);">
+        <div class="col-sm-12 col-md-6 col-lg-4 mb-4 d-flex">
+            <div class="card flex-fill" style="background: rgba(29, 29, 29, 0.8);">
                 <img src="{{$lesson->user->avatar}}" class="card-img-top" alt="steve jobs">
                 <div class="card-body text-center">
                     <h2 class=""><a href="/user/viewQuizzes/{{$lesson->id}}">{{$lesson->title}}</a></h2>

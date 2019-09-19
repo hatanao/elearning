@@ -15,6 +15,7 @@ class MakeAnswerIdForeignKey extends Migration
     {
         Schema::table('quizzes', function (Blueprint $table) {
             $table->unsignedInteger('answer_id')->change();
+            
             $table->foreign('answer_id')->references('id')->on('choices');
         });
     }

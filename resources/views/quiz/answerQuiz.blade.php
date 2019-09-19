@@ -14,7 +14,7 @@
                           Q{{isset($quiz_number) ? $quiz_number : 1}}: {{$quiz->question}}
                         </h5>
                         @if($quiz->image)
-                            <img src="{{$quiz->image}}" class="col-4" alt="" style="width: 10vh; height: 10vh;">
+                            <img src="{{$quiz->image}}" class="col-4" alt="" style="width: 8rem; height: 8rem;">
                         @endif
                     </div>
                     @foreach($quiz->choices as $key => $choice)

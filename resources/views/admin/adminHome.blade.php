@@ -77,7 +77,7 @@
                                         </div>
                                         @else
                                         <div class="ml-auto" style="text-align: -webkit-right;">
-                                            <a href="/user/follow/{{$user->id}}" class="btn btn-primary"> Follow</a>
+                                            <a href="/user/follow/{{$user->id}}" class="btn btn-primary" onclick="this.addEventListener('click', clickStopper, false);"> Follow</a>
                                             @if($user->is_admin == 0)
                                             <a href="/admin/delete/{{$user->id}}" class="btn btn-danger"> Delete </a>
                                             @elseif(Auth::user()->is_admin == 2)

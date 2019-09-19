@@ -62,17 +62,16 @@
                     <div class="list-group p-4">
                        @foreach($users as $user)
                                 <div class="list-group-item mb-1" style="background: rgba(29, 29, 29, 0.8);"> 
-                                    <form class=" d-flex align-items-center" method="post" action="#">
+                                    <form class=" d-flex align-items-center form-prevent-multiple-submits" method="post" action="#">
                                         <img src="{{$user->avatar}}" class="rounded-circle" style="width:6vh; height:6vh;">
                                         <a class="pl-3" href="/user/profile/{{$user->id}}">{{$user->name}}</a>
                                         
                                         @if(Auth::user()->is_following($user->id))
                                         <div class="ml-auto" style="text-align: -webkit-right;">
                                             <a href="/user/unfollow/{{$user->id}}" class="btn" style="background-color:#860400;"> Unfollow </a>
-                                            @switch()
-                                            
+                                            @if($user->is_admin == 0)
                                             <a href="/admin/delete/{{$user->id}}" class="btn btn-danger"> Delete </a>
-                                            @else
+                                            @elseif(Auth::user()->is_admin == 2)
                                             <a href="/admin/delete/{{$user->id}}" class="btn btn-danger"> Delete </a>
                                             @endif
                                         </div>
@@ -80,6 +79,8 @@
                                         <div class="ml-auto" style="text-align: -webkit-right;">
                                             <a href="/user/follow/{{$user->id}}" class="btn btn-primary"> Follow</a>
                                             @if($user->is_admin == 0)
+                                            <a href="/admin/delete/{{$user->id}}" class="btn btn-danger"> Delete </a>
+                                            @elseif(Auth::user()->is_admin == 2)
                                             <a href="/admin/delete/{{$user->id}}" class="btn btn-danger"> Delete </a>
                                             @endif
                                         </div>

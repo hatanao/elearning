@@ -7,14 +7,14 @@
             <h1>
                 {{isset($lesson) ? "Edit Lesson" : "Add Lesson"}}
             </h1>
-            <form 
+            <form class="form-prevent-multiple-submits"
                 action={{ isset($lesson) ? "/user/updateLesson/".$lesson->id : "/user/storeLesson/".Auth::user()->id}}
                 method="POST">
                 @csrf
                 <div class="form-group">
                     <label for="title" class="col-sm-2 col-form-label"><h4 style="letter-spacing: 0.5px;">Title</h4></label>
                         <input type="text" 
-                               required 
+                               required="required" 
                                class="form-control" 
                                id="title" 
                                name="title" 
@@ -25,7 +25,7 @@
                     <label for="description" class="col-sm-2 col-form-label"><h4 style="letter-spacing: 0.5px;">Description</h4></label>
                         <input 
                             type="text" 
-                            required 
+                            required="required"
                             class="form-control" 
                             id="description" 
                             name="description" 
@@ -34,7 +34,7 @@
                 </div>
                 <div class="form-group text-right pt-2">
                     <a href="/user/myLessons" class="btn mr-2 btn-secondary">Back</a>
-                    <button type="submit" class="btn btn-primary">{{isset($lesson) ? 'Update' : 'Create'}}</button>
+                    <button type="submit" class="btn btn-primary btn-prevent-multiple-submits">{{isset($lesson) ? 'Update' : 'Create'}}</button>
                 </div>
             </form>
         </div>

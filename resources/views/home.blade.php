@@ -45,7 +45,9 @@
                 </div>
                 @endforeach
             </div>
-            
+            <div class="d-flex justify-content-center pt-4">
+                {{ $activities->links() }}
+            </div>
             <h2 class="pt-5 pb-3 pl-3 heading-title">Completed Lessons</h2>
             <div class="row">
                 @foreach($completeLessons as $completeLesson)
@@ -68,7 +70,6 @@
                     </div>
                 @endforeach
             </div>
-            
         </div>
     </div>
 </div>

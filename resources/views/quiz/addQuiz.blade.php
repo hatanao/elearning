@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<form action="/user/storeQuiz/{{$lesson_id}}" method="POST" enctype="multipart/form-data">
+<form class="form-prevent-multiple-submits" action="/user/storeQuiz/{{$lesson_id}}" method="POST" enctype="multipart/form-data">
 @csrf
 <div class="container-fluid px-5">
     <div class="alert alert-danger" role="alert">
@@ -26,7 +26,7 @@
             
         </div>
         <div class="form-group col-md-12" style="text-align: end;">
-            <button type="submit" class="btn btn-primary mr-2">Add</button>
+            <button type="submit" class="btn btn-primary mr-2 btn-prevent-multiple-submits">Add</button>
             <a href="/user/viewQuizzes/{{$lesson_id}}" class="btn btn-secondary">Back</a>
         </div>
     </div>

@@ -25,6 +25,7 @@ class LessonController extends Controller
 
     public function editLesson($lessonId){
         $lesson = Lesson::find($lessonId); 
+
         return view('lessons.addLesson', compact('lesson'));
     }
 

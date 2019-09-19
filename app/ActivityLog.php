@@ -12,6 +12,4 @@ class ActivityLog extends Model
     public function activityable(){
         return $this->morphTo();
     }
-
-
 }

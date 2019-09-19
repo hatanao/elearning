@@ -21,20 +21,14 @@
                                     </div>
                                     @else
                                     <div class="ml-auto">
-                                        <a href="/user/follow/{{$user->id}}" class="btn btn-primary"> Follow</a>
+                                        <a href="/user/follow/{{$user->id}}" class="btn btn-primary" onclick="this.addEventListener('click', clickStopper, false);"> Follow</a>
                                     </div>
                                     @endif
                                 </form>
                             </div>
                             @endif
                         @endforeach
-                        <div class="d-flex justify-content-center pt-4">
-                            @if(isset($activities))
-                                {{ $users->appends('activities', $activities->currentPage())->links() }}
-                            @else
-                                {{ $users->links() }}
-                            @endif
-                        </div>
+                        
                     </div>
                 </div>
                 @isset($activities)
@@ -43,7 +37,6 @@
                         @foreach($activities as $activity)
                             <div class="list-group-item " style="background: rgba(29, 29, 29, 0.8); color:white;">
                                 <div class="d-flex align-items-center">
-                                    <img src="{{$activity->activityable->user->avatar}}" class="rounded-circle" style="width:6vh; height:6vh;">
                                     <h4 class="pl-3">{{$activity->message}}</h4> 
                                     <small class="text-muted pl-2">{{$activity->created_at->diffForHumans()}}</small>
                                 </div>

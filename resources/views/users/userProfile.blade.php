@@ -15,11 +15,11 @@
                             <h2>{{ $user->name }}</h2>
                                 @if(Auth::user()->is_following($user->id))
                                     <div class="ml-auto">
-                                        <a href="/user/unfollow/{{$user->id}}" class="btn btn-danger"> Unfollow </a>
+                                        <button type="submit"><a href="/user/unfollow/{{$user->id}}" class="btn btn-danger"> Unfollow </a></button>
                                     </div>
                                 @else
                                     <div class="ml-auto">
-                                        <a href="/user/follow/{{$user->id}}" class="btn btn-primary"> Follow</a>
+                                        <button type="submit"><a href="/user/follow/{{$user->id}}" class="btn btn-primary"> Follow</a></button>
                                     </div>
                                 @endif
                         </div>

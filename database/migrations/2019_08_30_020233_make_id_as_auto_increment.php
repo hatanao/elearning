@@ -13,13 +13,13 @@ class MakeIdAsAutoIncrement extends Migration
      */
     public function up()
     {
-        DB::statement("ALTER TABLE user_answer MODIFY id INT NOT NULL PRIMARY KEY AUTO_INCREMENT");            
+        DB::statement("ALTER TABLE user_answer MODIFY COLUMN id INT NOT NULL PRIMARY KEY AUTO_INCREMENT");            
     }
 
   public function down()
     {
-        DB::statement("ALTER TABLE user_answer MODIFY id INT NOT NULL");
+        DB::statement("ALTER TABLE user_answer MODIFY COLUMN id INT NOT NULL");
         DB::statement("ALTER TABLE user_answer DROP PRIMARY KEY");
-        DB::statement("ALTER TABLE user_answer MODIFY id INT NULL");
+        DB::statement("ALTER TABLE user_answer MODIFY COLUMN id INT NULL");
     }
 }

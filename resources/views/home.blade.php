@@ -51,17 +51,25 @@
             <h2 class="pt-5 pb-3 pl-3 heading-title">Completed Lessons</h2>
             <div class="row">
                 @foreach($completeLessons as $completeLesson)
-                    <div class="col-sm-12 col-md-6 col-lg-4">
-                        <div class="card text-center mb-4">
+                    <div class="col-sm-12 col-md-6 col-lg-4 d-flex">
+                        <div class="card text-center mb-4 flex-fill">
                             
-                            <span class="text-left complete-lesson">
-                                <img src="https://d2aj9sy12tbpym.cloudfront.net/javascripts/dist/assets/completed-ribbon-7d6635446596de8f57bc0063186c8b32.svg" class="lesson-card__completed-count-ribbon">
-                                <img src="https://d2aj9sy12tbpym.cloudfront.net/javascripts/dist/assets/times-4e6bf2a5e8516ff8c7be9dcf954ff083.svg" class="lesson-card__completed-count-times">
-                                {{$completeLesson->times}}
-                            </span>
-                            <img src="{{$completeLesson->lesson->user->avatar}}" class="card-img-top">
+                            <div class="text-left">
+                                <span class="complete-lesson mr-2">
+                                    Attempt 
+                                    <img src="https://d2aj9sy12tbpym.cloudfront.net/javascripts/dist/assets/times-4e6bf2a5e8516ff8c7be9dcf954ff083.svg" class="lesson-card__completed-count-times">
+                                    {{$completeLesson->times}}
+                                </span>
+                                <!-- <span class="complete-lesson">
+                                    <img src="https://d2aj9sy12tbpym.cloudfront.net/javascripts/dist/assets/completed-ribbon-7d6635446596de8f57bc0063186c8b32.svg" class="lesson-card__completed-count-ribbon">
+                                    <img src="https://d2aj9sy12tbpym.cloudfront.net/javascripts/dist/assets/times-4e6bf2a5e8516ff8c7be9dcf954ff083.svg" class="lesson-card__completed-count-times">
+                                    
+                                </span> -->
+                            </div>
+                            <img src="{{$completeLesson->lesson->image}}" class="card-img-top rounded mt-3">
+                            <p class="pt-3 mb-0">Author: {{$completeLesson->lesson->user->name}}</p>
                             <div class="card-body">
-                                <h2 class="">{{$completeLesson->lesson->title}}</h2>
+                                <h4 class="">{{$completeLesson->lesson->title}}</h4>
                                 <p class="">{{$completeLesson->lesson->description}}</p>
                                 <p class="">{{$completeLesson->lesson->quizzes()->count()}} Quiz</p>
                                 <a href="/user/answerQuiz/{{$completeLesson->lesson_id}}" class="btn btn-block btn-primary">Review</a>

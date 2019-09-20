@@ -94,8 +94,7 @@ class UserController extends Controller
     public function showUserProfile($id)
     {
         $user = User::find($id); 
-        $activities = $user->activities()->orderBy('created_at','desc')->paginate(7);
-
+        $activities = $user->activities()->orderBy('created_at','desc')->paginate(10);
         return view('users.userProfile', compact('user', 'activities'));
     }
 

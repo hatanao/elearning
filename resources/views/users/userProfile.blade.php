@@ -39,22 +39,30 @@
                 </div>
             </div>
         </div>
+        @if(Auth::user()->is_following($user->id))
         <div class="col-md-9">
             <h2 class="heading-title p-3">User Activities</h2>
-                <div class="list-group">
-                    @foreach($activities as $activity)
-                    <div class="list-group-item" style="background: rgba(29, 29, 29, 0.8); color:white;">
-                        <div class="d-flex align-items-center">
-                            <h4 class="pl-3">{{$activity->message}}</h4> 
-                            <small class="text-muted pl-2">{{$activity->created_at->diffForHumans()}}</small>
-                        </div>
+            @if($activities->count())
+                    <div class="list-group">
+                        @foreach($activities as $activity)
+                            <div class="list-group-item" style="background: rgba(29, 29, 29, 0.8); color:white;">
+                                <div class="d-flex align-items-center">
+                                    <h4 class="pl-3">{{$activity->message}}</h4> 
+                                    <small class="text-muted pl-2">{{$activity->created_at->diffForHumans()}}</small>
+                                </div>
+                            </div>
+                        @endforeach
                     </div>
-                    @endforeach
+                    <div class="d-flex justify-content-center pt-4">
+                            {{ $activities->links() }}
+                    </div>
                 </div>
-                <div class="d-flex justify-content-center pt-4">
-                        {{ $activities->links() }}
-                </div>
-        </div>
+            @else
+                <h1 class="text-danger pl-3" style="margin:0 auto;">There's no Activiy yet!</h1>
+            @endif
+        @else
+            <h1 class="text-danger pt-4" style="margin:0 auto;">You are not following this user!</h1>
+        @endif
     </div>
 </div>
 @endsection

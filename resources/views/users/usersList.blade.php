@@ -3,6 +3,17 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
+            <!-- <form action="/search" method="POST" role="search">
+                {{ csrf_field() }}
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="q"
+                            placeholder="Search users"> <span class="input-group-btn">
+                            <button type="submit" class="btn btn-default">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
+                        </span>
+                    </div>
+            </form> -->
             <div class="panel user-list">
                 <h2 class="heading-title p-2">User List</h2>
 
@@ -28,7 +39,11 @@
                             </div>
                             @endif
                         @endforeach
-                        
+                        @isset($activities)
+                            <div class="d-flex justify-content-center pt-4">
+                                {{ $users->appends('activities',  $activities->currentPage())->links() }}
+                            </div>
+                        @endisset
                     </div>
                 </div>
                 @isset($activities)
@@ -37,6 +52,7 @@
                         @foreach($activities as $activity)
                             <div class="list-group-item " style="background: rgba(29, 29, 29, 0.8); color:white;">
                                 <div class="d-flex align-items-center">
+                                    <img class="rounded-circle" src="{{$activity->user->avatar}}" alt="" style="width: 7vh; height: 7vh;">
                                     <h4 class="pl-3">{{$activity->message}}</h4> 
                                     <small class="text-muted pl-2">{{$activity->created_at->diffForHumans()}}</small>
                                 </div>

@@ -1,5 +1,8 @@
 <?php
 
+use Illuminate\Support\Facades\Input;
+use App\User;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,8 +23,17 @@ Auth::routes();
 Route::group(['middleware'=>['auth', 'revalidate']], function () {
     Route::get('/home', 'HomeController@index')->name('home');
 
-    Route::get('/test', 'ActivityLogController@showActivityLog');
-
+    Route::post('/search',function(){
+        $q = Input::get ( 'q' );
+        if($q != ''){
+            $user = User::where('name', 'LIKE', '%' .$q. '%')->get();
+        }
+            return 'no data';
+        // $user = User::where('name','LIKE','%'.$q.'%')->get();
+        // if(count($user) > 0)
+        //     return view('welcome')->withDetails($user)->withQuery ( $q );
+        // else return view ('welcome')->withMessage('No Details found. Try to search again !');
+    });
 
     Route::group(['prefix'=>'user'], function () {
         Route::get('edit/{id}', 'UserController@edit');

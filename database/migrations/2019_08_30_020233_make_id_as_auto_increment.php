@@ -14,14 +14,13 @@ class MakeIdAsAutoIncrement extends Migration
     public function up()
     {
         Schema::table('user_answer', function (Blueprint $table) {
-            $table->increments('id')->first();
+            $table->increments('id')->first()->change();
         });    
     }
 
   public function down()
     {
         Schema::table('user_answer', function (Blueprint $table) {
-            $table->dropColumn('id');
         }); 
     }
 }

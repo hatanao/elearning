@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'avatar'
     ];
 
     /**
@@ -36,4 +36,32 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function following(){
+        return $this->belongsToMany('App\User', 'followers', 'follower_id', 'user_id'); // someone who follow must come first 
+    }
+    public function is_following($user_id){
+        if($this->following()->where('user_id', $user_id)->count() > 0){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    public function followers(){
+        return $this->belongsToMany('App\User', 'followers', 'user_id', 'follower_id'); // someone who is followed by someone must come first
+    }
+
+    public function lessons(){
+        return $this->hasMany('App\Lesson');
+    }
+    public function choices(){
+        return $this->hasMany('App\Choice');
+    }
+    public function lessonTakens(){
+        return $this->hasMany('App\LessonTaken');
+    }
+
+    public function activities(){
+        return $this->hasMany('App\ActivityLog');
+    }
 }

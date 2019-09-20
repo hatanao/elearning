@@ -29,9 +29,24 @@ class LessonController extends Controller
         return view('lessons.addLesson', compact('lesson'));
     }
 
-    public function updateLesson($lessonId){
+    public function updateLesson($id){
 
-        $lesson = Lesson::find($lessonId)->update(request()->all());
+        $lesson = Lesson::find($id)->update(request()->all());
+
+        if(request()->file('image')){
+
+            request()->validate([
+                'image' => 'image|mimes:jpeg,png,jpg|max:2048'
+            ]);
+
+            $file = request()->file('image')->getClientOriginalName(); 
+
+            request()->file('image')->storeAs('public/images', $file); 
+            
+            $lesson = Lesson::find($id);
+            $lesson->image = '/storage/images/'.$file;
+            $lesson->save();
+        }
         
         return redirect('/user/myLessons');
 
@@ -39,6 +54,7 @@ class LessonController extends Controller
     
     public function showMyLessons(){
         $lessons = Auth::user()->lessons()->orderBy('created_at','desc')->paginate(9);
+        
         return view('lessons.showMyLessons', compact('lessons'));
     }
 

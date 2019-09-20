@@ -33,13 +33,17 @@ class HomeController extends Controller
         }
 
         $completeLessons = Auth::user()->lessonTakens->where('is_complete', 1)->unique('lesson_id');
-
+        
         foreach($completeLessons as $completeLesson){
 
+
+
+            //attempt times
             $completeLesson->times = Auth::user()->lessonTakens
                                          ->where('is_complete', 1)
                                          ->where('lesson_id' , $completeLesson->lesson_id)
                                          ->count();
+                             
         }
 
         $activities = Auth::user()->activities()->orderBy('created_at','desc')->paginate(5);
@@ -53,7 +57,6 @@ class HomeController extends Controller
     {
         $users = User::where("id" , "!=" , Auth::user()->id)
                       ->paginate(5, ['*'], 'users'); 
-
 
         $activities = ActivityLog::where('user_id', '!=', auth()->user()->id)
                                     ->orderBy('created_at','desc')

@@ -21,6 +21,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/main.css') }}" rel="stylesheet">
     <link href="{{ asset('css/submit.css') }}" rel="stylesheet">
+    
     @yield('css')
 
 </head>
@@ -93,7 +94,6 @@
         @endif
         <main class="p-4">
             @yield('content')
-    
         </main>
     </div>
 </body>

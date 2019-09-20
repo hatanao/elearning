@@ -124,7 +124,6 @@ class QuizController extends Controller
         $quiz = Quiz::find($next_id); // set the $next_id to $quiz 
 
         $quiz_number = $lesson->quizzes->search($quiz) + 1;
-        // return $quiz_number;
 
         //if there's no more quiz update is_complete value and return the result view
         if($next_id == ''){

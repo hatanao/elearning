@@ -1,9 +1,5 @@
 @extends('layouts.app')
 
-@section('css')
-<link href="{{ asset('css/home.css') }}" rel="stylesheet">
-@endsection
-
 @section('content')
 <div class="container">
     <ul class="nav nav-tabs mb-5">
@@ -18,8 +14,9 @@
     <div class="row">
         @foreach($sortedLessons as $lesson)
             <div class="col-sm-12 col-md-6 col-lg-4 mb-4 d-flex">
-                <div class="card text-center flex-fill">
-                    <img src="{{$lesson->user->avatar}}" class="card-img-top  no-padding">
+                <div class="card text-center flex-fill p-0">
+                    <img src="{{$lesson->image}}" class="card-img-top">
+                    <p class="pt-3 m-0">Author: {{$lesson->user->name}}</p>
                     <div class="card-body">
                         <h2 class="">{{$lesson->title}}</h2>
                         <p class="">{{$lesson->description}}</p>

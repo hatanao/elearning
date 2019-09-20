@@ -55,11 +55,11 @@ a{
 }
 
 .card-img-top {
-    width: 5rem;
-    height: 5rem;
+    width: 100%;
+    height: 9rem;
     margin: auto;
-    margin-top: 0.5rem;
-    border-radius: 50%;
+    /* margin-top: 0.5rem; */
+    /* border-radius: 50%; */
 }
 
 .complete-lesson{

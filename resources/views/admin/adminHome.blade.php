@@ -70,18 +70,18 @@
                                         <div class="ml-auto" style="text-align: -webkit-right;">
                                             <a href="/user/unfollow/{{$user->id}}" class="btn" style="background-color:#860400;"> Unfollow </a>
                                             @if($user->is_admin == 0)
-                                            <a href="/admin/delete/{{$user->id}}" class="btn btn-danger"> Delete </a>
+                                            <a href="/admin/delete/{{$user->id}}" class="btn btn-danger" onclick="return confirm('Are you sure to delete?')"> Delete </a>
                                             @elseif(Auth::user()->is_admin == 2)
-                                            <a href="/admin/delete/{{$user->id}}" class="btn btn-danger"> Delete </a>
+                                            <a href="/admin/delete/{{$user->id}}" class="btn btn-danger" onclick="return confirm('Are you sure to delete?')"> Delete </a>
                                             @endif
                                         </div>
                                         @else
                                         <div class="ml-auto" style="text-align: -webkit-right;">
                                             <a href="/user/follow/{{$user->id}}" class="btn btn-primary" onclick="this.addEventListener('click', clickStopper, false);"> Follow</a>
                                             @if($user->is_admin == 0)
-                                            <a href="/admin/delete/{{$user->id}}" class="btn btn-danger"> Delete </a>
+                                            <a href="/admin/delete/{{$user->id}}" class="btn btn-danger" onclick="return confirm('Are you sure to delete?')"> Delete </a>
                                             @elseif(Auth::user()->is_admin == 2)
-                                            <a href="/admin/delete/{{$user->id}}" class="btn btn-danger"> Delete </a>
+                                            <a href="/admin/delete/{{$user->id}}" class="btn btn-danger" onclick="return confirm('Are you sure to delete?')"> Delete </a>
                                             @endif
                                         </div>
                                         @endif

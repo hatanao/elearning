@@ -13,13 +13,15 @@ class MakeIdAsAutoIncrement extends Migration
      */
     public function up()
     {
-        DB::statement("ALTER TABLE user_answer MODIFY COLUMN id INT NOT NULL PRIMARY KEY AUTO_INCREMENT");            
+        Schema::table('user_answer', function (Blueprint $table) {
+            $table->increments('id')->first();
+        });    
     }
 
   public function down()
     {
-        DB::statement("ALTER TABLE user_answer MODIFY COLUMN id INT NOT NULL");
-        DB::statement("ALTER TABLE user_answer DROP PRIMARY KEY");
-        DB::statement("ALTER TABLE user_answer MODIFY COLUMN id INT NULL");
+        Schema::table('user_answer', function (Blueprint $table) {
+            $table->dropColumn('id');
+        }); 
     }
 }
